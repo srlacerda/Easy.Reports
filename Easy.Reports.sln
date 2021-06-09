@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{2F461D2A-E144-415C-9A46-435538087EF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Reports.Api", "src\Easy.Reports.Api\Easy.Reports.Api.csproj", "{01580A10-7B40-4E95-88EE-0B6E56C5F9F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Api", "src\Easy.Reports.Api\Easy.Reports.Api.csproj", "{01580A10-7B40-4E95-88EE-0B6E56C5F9F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Reports.Application", "src\Easy.Reports.Application\Easy.Reports.Application.csproj", "{EF83AE5F-DA13-46ED-9D48-76A873B03F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Application", "src\Easy.Reports.Application\Easy.Reports.Application.csproj", "{EF83AE5F-DA13-46ED-9D48-76A873B03F45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Reports.Domain", "src\Easy.Reports.Domain\Easy.Reports.Domain.csproj", "{E16C010D-D106-4308-85E9-4EA3CE474FB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Domain", "src\Easy.Reports.Domain\Easy.Reports.Domain.csproj", "{E16C010D-D106-4308-85E9-4EA3CE474FB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
