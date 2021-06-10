@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Easy.Reports.Application.Services
 {
-    public class FixedIncome
+    public class FixedIncomeService
     {
+
+        public FixedIncomeService()
+        {
+
+        }
     }
 }

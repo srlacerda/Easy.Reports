@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Easy.Reports.Application.Client;
+using Easy.Reports.Application.UseCases.ConsolidatedReport;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
+using Refit;
 
 namespace Easy.Reports.Api
 {
@@ -27,6 +26,14 @@ namespace Easy.Reports.Api
         {
             services.AddControllers();
 
+            services.AddRefitClient<IMock>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetSection("MockService:BaseUrl").Value));
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            //services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddMediatR(typeof(Easy.Reports.Application.UseCases.ConsolidatedReport));
+            var assembly = (typeof(GetHandler));
+            services.AddMediatR(assembly);
+
             services.AddSwaggerGen(swagger =>
             {
                 swagger.SwaggerDoc("v1", new OpenApiInfo
@@ -42,6 +49,8 @@ namespace Easy.Reports.Api
                     }
                 });
             });
+
+            //services.RegisterServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

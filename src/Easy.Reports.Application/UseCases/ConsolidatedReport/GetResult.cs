@@ -6,5 +6,6 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 {
     public class GetResult
     {
+        public decimal valorTotal { get; set; }
     }
 }

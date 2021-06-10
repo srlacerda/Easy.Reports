@@ -20,7 +20,7 @@ namespace Easy.Reports.Domain.Entities
         public bool guarantidoFGC { get; set; }
         public DateTime dataOperacao { get; set; }
         public decimal precoUnitario { get; set; }
-        public DateTime primario { get; set; }
+        public bool primario { get; set; }
 
     }
 }
