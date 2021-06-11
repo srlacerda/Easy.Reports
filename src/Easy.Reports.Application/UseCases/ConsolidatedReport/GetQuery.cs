@@ -5,11 +5,16 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 {
     public class GetQuery : IRequest<GetResult>
     {
-        public DateTime DateRequest { get; set; }
-        public GetQuery()
+        public DateTime dateRequest { get; set; }
+
+        protected GetQuery(){}
+        public GetQuery(DateTime dateRequest)
         {
-            DateRequest = DateTime.Now;
+            this.dateRequest = dateRequest;
         }
-        public int Id { get; set; }
+        //public GetQuery()
+        //{
+        //    DateRequest = DateTime.Now;
+        //}
     }
 }

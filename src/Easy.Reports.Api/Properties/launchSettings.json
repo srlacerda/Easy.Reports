@@ -12,7 +12,8 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      //"launchUrl": "weatherforecast",
+      "launchUrl": "ConsolidatedReport",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +21,7 @@
     "Easy.Reports.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "ConsolidatedReport",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

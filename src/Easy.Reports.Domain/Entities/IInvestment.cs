@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Easy.Reports.Domain.Entities
 {
-    public class FixedIncome
+    public interface IInvestment
     {
+        void EfetuarCalculosResgate(DateTime dataResgate);
     }
 }

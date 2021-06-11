@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Easy.Reports.Application\Easy.Reports.Application.csproj" />
+    <ProjectReference Include="..\Easy.Reports.Infra.ExternalServices\Easy.Reports.Infra.ExternalServices.csproj" />
   </ItemGroup>
 
 

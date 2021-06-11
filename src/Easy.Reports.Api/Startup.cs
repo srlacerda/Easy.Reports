@@ -1,6 +1,4 @@
-using Easy.Reports.Application.Client;
-using Easy.Reports.Application.UseCases.ConsolidatedReport;
-using MediatR;
+using Easy.Reports.Api.Setup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,15 +6,24 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using Refit;
 
 namespace Easy.Reports.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        //public Startup(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -26,13 +33,7 @@ namespace Easy.Reports.Api
         {
             services.AddControllers();
 
-            services.AddRefitClient<IMock>()
-                .ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetSection("MockService:BaseUrl").Value));
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
-            //services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-            //services.AddMediatR(typeof(Easy.Reports.Application.UseCases.ConsolidatedReport));
-            var assembly = (typeof(GetHandler));
-            services.AddMediatR(assembly);
+            services.RegisterServices(Configuration);
 
             services.AddSwaggerGen(swagger =>
             {
@@ -49,8 +50,6 @@ namespace Easy.Reports.Api
                     }
                 });
             });
-
-            //services.RegisterServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
