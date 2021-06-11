@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Easy.Reports.Application.Services
@@ -20,8 +21,8 @@ namespace Easy.Reports.Application.Services
             _fixedIncomeService = fixedIncomeService;
             _investmentFundService = investmentFundService;
         }
-        //public async Task<IEnumerable<Investment>> GetAllProducts(DateTime dataResgate)
-        public async Task<GetResult> GetAllProducts(DateTime dataResgate)
+        //public async Task<GetResult> GetAllProducts(DateTime dataResgate)
+        public async Task<GetResult> GetAllProducts(DateTime dataResgate, CancellationToken cancellationToken)
         {
             var result = await Task.WhenAll(
                 GetTreasuryDirect(dataResgate),
@@ -54,5 +55,7 @@ namespace Easy.Reports.Application.Services
         {
             return await _investmentFundService.GetInvestmentFund(dataResgate);
         }
+
+        
     }
 }

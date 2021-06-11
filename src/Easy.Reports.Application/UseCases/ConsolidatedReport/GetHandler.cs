@@ -34,7 +34,7 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
                     AbsoluteExpiration = diaSeguinte
                 };
                 
-                getResult = await _consolidatedInvestmentService.GetAllProducts(request.dateRequest);
+                getResult = await _consolidatedInvestmentService.GetAllProducts(request.dateRequest, cancellationToken);
                 _memoryCache.Set(cashKey, getResult, opcoesDoCache);
             }
 
