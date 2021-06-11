@@ -4,20 +4,36 @@ using System.Text;
 
 namespace Easy.Reports.Domain.Entities
 {
-    public abstract class Investment 
+    public abstract class Investment //: IInvestment
     {
         private const decimal _menosDaMetadeDoTempoEmCustodia = 0.30m;
         private const decimal _maisDaMetadeDoTempoEmCustodia = 0.15m;
         private const decimal _ateTresMesesParaVencer = 0.06m;
         private const decimal _maiorIgualVencimento = 0m;
 
-        protected decimal CalcularIr(decimal irPercentual, decimal valorTotal, decimal valorInvestido)
+        public decimal valorInvestido { get; protected set; }
+        public decimal valorTotal { get; protected set; }
+        public DateTime vencimento { get; protected set; }
+        public DateTime dataDeCompra { get; protected set; }
+        public string nome { get; protected set; }
+        public decimal ir { get; protected set; }
+        public decimal valorResgate { get; protected set; }
+
+
+        public abstract void EfetuarCalculosResgate(DateTime dataResgate);
+        protected void EfetuarCalculos(DateTime dataResgate, decimal irPercentual)
+        {
+            CalcularValorResgate(dataResgate);
+            CalcularIr(irPercentual);
+        }
+
+        private void CalcularIr(decimal irPercentual)
         {
             decimal valorRentabilidade = valorTotal - valorInvestido;
-            return irPercentual * valorRentabilidade;
+            ir = irPercentual * valorRentabilidade;
         }
-        
-        protected decimal CalcularValorResgate(DateTime dataResgate, DateTime dataDeCompra, DateTime vencimento, decimal valorTotal)
+
+        private void CalcularValorResgate(DateTime dataResgate)
         {
             decimal perdaPecentual;
             
@@ -42,7 +58,7 @@ namespace Easy.Reports.Domain.Entities
                 perdaPecentual = _menosDaMetadeDoTempoEmCustodia;
             }
 
-            return valorTotal - (perdaPecentual * valorTotal);
+            valorResgate = valorTotal - (perdaPecentual * valorTotal);
         }
 
        

@@ -3,7 +3,6 @@ using Easy.Reports.Domain.Services;
 using Easy.Reports.Infra.ExternalServices.Client.Mock;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Easy.Reports.Application.Services
@@ -15,7 +14,8 @@ namespace Easy.Reports.Application.Services
         {
             _mockService = mockService;
         }
-        public async Task<string> GetTreasuryDirect(DateTime dataResgate)
+
+        public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirect(DateTime dataResgate)
         {
             var treasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
 
@@ -27,14 +27,15 @@ namespace Easy.Reports.Application.Services
                 td.EfetuarCalculosResgate(dataResgate);
                 tds.Add(td);
             }
-
+            
+            return tds;
             //HashSet<TreasuryDirect> newTds = new HashSet<TreasuryDirect>();
             //foreach (var treasuryDirect in treasuryDirectMockModel.tds)
             //{
             //    newTds.Add((TreasuryDirect)treasuryDirect);
             //}
 
-            return "diego TreasuryDirect";
+
         }
     }
 }
