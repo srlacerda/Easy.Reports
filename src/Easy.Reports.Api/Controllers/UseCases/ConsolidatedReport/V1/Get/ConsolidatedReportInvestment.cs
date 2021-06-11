@@ -11,7 +11,7 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
         public decimal valorInvestido { get; set; }
         public decimal valorTotal { get; set; }
         public DateTime vencimento { get; set; }
-        public decimal Ir { get; set; }
+        public decimal ir { get; set; }
         public decimal valorResgate { get; set; }
     }
 }

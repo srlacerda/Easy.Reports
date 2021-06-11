@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 {
-    public class GetResult
+    public class OldGetResult
     {
         public decimal valorTotal { get; set; }
     }

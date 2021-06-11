@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Domain", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{9547DBBC-7C45-4C4F-B21E-AAD7BF8AA79D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Reports.Infra.ExternalServices", "src\Easy.Reports.Infra.ExternalServices\Easy.Reports.Infra.ExternalServices.csproj", "{577CEB77-8F82-48A0-A250-DBAEAB82753E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Infra.ExternalServices", "src\Easy.Reports.Infra.ExternalServices\Easy.Reports.Infra.ExternalServices.csproj", "{577CEB77-8F82-48A0-A250-DBAEAB82753E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

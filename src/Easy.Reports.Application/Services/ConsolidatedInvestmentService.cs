@@ -1,5 +1,6 @@
 ﻿using Easy.Reports.Domain.Entities;
 using Easy.Reports.Domain.Services;
+using Easy.Reports.Domain.UseCases.ConsolidatedReport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +20,24 @@ namespace Easy.Reports.Application.Services
             _fixedIncomeService = fixedIncomeService;
             _investmentFundService = investmentFundService;
         }
-        public async Task<IEnumerable<Investment>> GetAllProducts(DateTime dataResgate)
+        //public async Task<IEnumerable<Investment>> GetAllProducts(DateTime dataResgate)
+        public async Task<GetResult> GetAllProducts(DateTime dataResgate)
         {
-            //var resultTreasuryDirect = await _treasuryDirectService.GetTreasuryDirect(dataResgate);
-            //var resultfixedIncome = await _fixedIncomeService.GetFixedIncome(dataResgate);
-            //var resultinvestmentFund = await _investmentFundService.GetInvestmentFund(dataResgate);
-            
             var result = await Task.WhenAll(
                 GetTreasuryDirect(dataResgate),
                 GetFixedIncome(dataResgate),
                 GetInvestmentFund(dataResgate)
             );
-
+            
             var investments = result.Aggregate((r1, r2) => r1.Concat(r2));
-            return investments;
+
+            GetResult getResult = new GetResult
+            {
+                valorTotal = investments.Sum(i => i.valorResgate),
+                investments = investments
+            };
+            
+            return getResult;
         }
 
         private async Task<IEnumerable<Investment>> GetTreasuryDirect(DateTime dataResgate)
