@@ -15,11 +15,11 @@ namespace Easy.Reports.Domain.Entities
         {
             return new FixedIncome
             {
-                InvestedValue = fixedIncomeMock.capitalInvestido,
-                TotalValue = fixedIncomeMock.capitalAtual,
-                DueDate = fixedIncomeMock.vencimento,
-                PurchaseDate = fixedIncomeMock.dataOperacao,
-                Name = fixedIncomeMock.nome
+                InvestedValue = fixedIncomeMock.InvestedCapital,
+                TotalValue = fixedIncomeMock.CurrentCapital,
+                DueDate = fixedIncomeMock.DueDate,
+                PurchaseDate = fixedIncomeMock.OperationDate,
+                Name = fixedIncomeMock.Name
             };
         }
     }

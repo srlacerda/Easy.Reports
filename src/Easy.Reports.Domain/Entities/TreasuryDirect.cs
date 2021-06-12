@@ -15,11 +15,11 @@ namespace Easy.Reports.Domain.Entities
         {
             return new TreasuryDirect
             {
-                InvestedValue = treasuryDirectMockModel.valorInvestido,
-                TotalValue = treasuryDirectMockModel.valorTotal,
-                DueDate = treasuryDirectMockModel.vencimento,
-                PurchaseDate = treasuryDirectMockModel.dataDeCompra,
-                Name = treasuryDirectMockModel.nome
+                InvestedValue = treasuryDirectMockModel.InvestedValue,
+                TotalValue = treasuryDirectMockModel.TotalValue,
+                DueDate = treasuryDirectMockModel.DueDate,
+                PurchaseDate = treasuryDirectMockModel.PurchaseDate,
+                Name = treasuryDirectMockModel.Name
             };
         }
     }

@@ -21,7 +21,7 @@ namespace Easy.Reports.Application.Services
 
             if (investmentFundMockModel.IsSuccessStatusCode)
             {
-                foreach (var investmentFundMock in investmentFundMockModel.Content.fundos)
+                foreach (var investmentFundMock in investmentFundMockModel.Content.InvestmentFundList)
                 {
                     var investmentFund = (InvestmentFund)investmentFundMock;
                     investmentFund.PerformCalculationsRescue(rescueDate);

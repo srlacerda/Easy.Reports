@@ -21,7 +21,7 @@ namespace Easy.Reports.Application.Services
 
             if (treasuryDirectMockModel.IsSuccessStatusCode)
             {
-                foreach (var treasuryDirectMock in treasuryDirectMockModel.Content.tds)
+                foreach (var treasuryDirectMock in treasuryDirectMockModel.Content.TreasuryDirectList)
                 {
                     var treasuryDirect = (TreasuryDirect)treasuryDirectMock;
                     treasuryDirect.PerformCalculationsRescue(rescueDate);

@@ -15,11 +15,11 @@ namespace Easy.Reports.Domain.Entities
         {
             return new InvestmentFund
             {
-                InvestedValue = investmentFundMock.capitalInvestido,
-                TotalValue = investmentFundMock.ValorAtual,
-                DueDate = investmentFundMock.dataResgate,
-                PurchaseDate = investmentFundMock.dataCompra,
-                Name = investmentFundMock.nome
+                InvestedValue = investmentFundMock.InvestedCapital,
+                TotalValue = investmentFundMock.CurrentValue,
+                DueDate = investmentFundMock.RescueDate,
+                PurchaseDate = investmentFundMock.PurchaseDate,
+                Name = investmentFundMock.Name
             };
         }
     }

@@ -11,7 +11,6 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
         private const int _investmentTotalValueDecimalPlace = 2;
         private const int _irTaxValueDecimalPlace = 4;
         private const int _rescueValueDecimalPlace = 3;
-
         public decimal valorTotal { get; set; }
         public IEnumerable<ConsolidatedReportInvestment> investimentos { get; set; }
 

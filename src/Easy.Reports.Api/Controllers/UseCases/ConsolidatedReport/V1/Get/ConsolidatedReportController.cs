@@ -11,10 +11,10 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
         [HttpGet]
         public async Task<ConsolidatedReportResponse> Get()
         {
-            var query = new GetQuery(DateTime.Now);
-            var result = await _mediator.Send(query, CancellationToken.None);
-            var response = (ConsolidatedReportResponse)result;
-            return await Task.FromResult(response);
+            var getQuery = new GetQuery(DateTime.Now);
+            var getResult = await _mediator.Send(getQuery, CancellationToken.None);
+            var consolidatedReportResponse = (ConsolidatedReportResponse)getResult;
+            return await Task.FromResult(consolidatedReportResponse);
         }
     }
 }

@@ -1,22 +1,50 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Easy.Reports.Domain.Models
 {
     public class FixedIncomeMock
     {
-        public decimal capitalInvestido { get; set; }
-        public decimal capitalAtual { get; set; }
-        public decimal quantidade { get; set; }
-        public DateTime vencimento { get; set; }
-        public decimal iof { get; set; }
-        public decimal outrasTaxas { get; set; }
-        public decimal taxas { get; set; }
-        public string indice { get; set; }
-        public string tipo { get; set; }
-        public string nome { get; set; }
-        public bool guarantidoFGC { get; set; }
-        public DateTime dataOperacao { get; set; }
-        public decimal precoUnitario { get; set; }
-        public bool primario { get; set; }
+        [JsonProperty("capitalInvestido")]
+        public decimal InvestedCapital { get; set; }
+
+        [JsonProperty("capitalAtual")]
+        public decimal CurrentCapital { get; set; }
+
+        [JsonProperty("quantidade")]
+        public decimal Quantitiy { get; set; }
+
+        [JsonProperty("vencimento")]
+        public DateTime DueDate { get; set; }
+
+        [JsonProperty("iof")]
+        public decimal Iof { get; set; }
+
+        [JsonProperty("outrasTaxas")]
+        public decimal OtherFees { get; set; }
+
+        [JsonProperty("taxas")]
+        public decimal Fees { get; set; }
+        
+        [JsonProperty("indice")]
+        public string Index { get; set; }
+
+        [JsonProperty("tipo")]
+        public string InvestmentType { get; set; }
+        
+        [JsonProperty("nome")]
+        public string Name { get; set; }
+        
+        [JsonProperty("guarantidoFGC")]
+        public bool GuaranteedFgc { get; set; }
+        
+        [JsonProperty("dataOperacao")]
+        public DateTime OperationDate { get; set; }
+        
+        [JsonProperty("precoUnitario")]
+        public decimal UnitPrice { get; set; }
+        
+        [JsonProperty("primario")]
+        public bool Primary { get; set; }
     }
 }

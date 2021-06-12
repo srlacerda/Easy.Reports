@@ -1,16 +1,32 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Easy.Reports.Domain.Models
 {
     public class TreasuryDirectMock 
     {
-        public decimal valorInvestido { get;  set; }
-        public decimal valorTotal { get;  set; }
-        public DateTime vencimento { get;  set; }
-        public DateTime dataDeCompra { get;  set; }
-        public decimal iof { get;  set; }
-        public string indice { get;  set; }
-        public string tipo { get;  set; }
-        public string nome { get;  set; }
+        [JsonProperty("valorInvestido")]
+        public decimal InvestedValue { get;  set; }
+
+        [JsonProperty("valorTotal")]
+        public decimal TotalValue { get;  set; }
+
+        [JsonProperty("vencimento")]
+        public DateTime DueDate { get;  set; }
+
+        [JsonProperty("dataDeCompra")]
+        public DateTime PurchaseDate { get;  set; }
+
+        [JsonProperty("iof")]
+        public decimal Iof { get;  set; }
+
+        [JsonProperty("indice")]
+        public string Index { get;  set; }
+
+        [JsonProperty("tipo")]
+        public string InvestmentType { get;  set; }
+
+        [JsonProperty("nome")]
+        public string Name { get;  set; }
     }
 }

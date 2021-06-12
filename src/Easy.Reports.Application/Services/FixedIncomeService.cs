@@ -21,7 +21,7 @@ namespace Easy.Reports.Application.Services
 
             if (fixedIncomeMockModel.IsSuccessStatusCode)
             {
-                foreach (var fixedIncomeMock in fixedIncomeMockModel.Content.lcis)
+                foreach (var fixedIncomeMock in fixedIncomeMockModel.Content.FixedIncomeList)
                 {
                     var fixedIncome = (FixedIncome)fixedIncomeMock;
                     fixedIncome.PerformCalculationsRescue(rescueDate);
