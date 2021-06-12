@@ -19,9 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{9547DBBC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Infra.ExternalServices", "src\Easy.Reports.Infra.ExternalServices\Easy.Reports.Infra.ExternalServices.csproj", "{577CEB77-8F82-48A0-A250-DBAEAB82753E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Reports.Application.Tests", "tests\Easy.Reports.Application.Tests\Easy.Reports.Application.Tests.csproj", "{9D215C8C-A1BA-4787-AA31-930D4999B045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Application.Tests", "tests\Easy.Reports.Application.Tests\Easy.Reports.Application.Tests.csproj", "{9D215C8C-A1BA-4787-AA31-930D4999B045}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Reports.Domain.Testes", "tests\Easy.Reports.Domain.Testes\Easy.Reports.Domain.Testes.csproj", "{064C7018-F2E5-4334-A88A-FFE3B13014A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Reports.Domain.Testes", "tests\Easy.Reports.Domain.Testes\Easy.Reports.Domain.Testes.csproj", "{064C7018-F2E5-4334-A88A-FFE3B13014A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

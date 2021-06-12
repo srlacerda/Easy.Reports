@@ -3,7 +3,6 @@ using Easy.Reports.Domain.Services;
 using Easy.Reports.Infra.ExternalServices.Client.Mock;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Easy.Reports.Application.Services
@@ -15,19 +14,21 @@ namespace Easy.Reports.Application.Services
         {
             _mockService = mockService;
         }
-        public async Task<IEnumerable<InvestmentFund>> GetInvestmentFund(DateTime dataResgate)
+        public async Task<IEnumerable<InvestmentFund>> GetInvestmentFundAsync(DateTime rescueDate)
         {
             var investmentFundMockModel = await _mockService.GetInvestmentFundAsync();
-            List<InvestmentFund> fundos = new List<InvestmentFund>();
+            var investmentFundList = new List<InvestmentFund>();
 
-            foreach (var investmentFundMock in investmentFundMockModel.fundos)
+            if (investmentFundMockModel.IsSuccessStatusCode)
             {
-                var fundo = (InvestmentFund)investmentFundMock;
-                fundo.EfetuarCalculosResgate(dataResgate);
-                fundos.Add(fundo);
+                foreach (var investmentFundMock in investmentFundMockModel.Content.fundos)
+                {
+                    var investmentFund = (InvestmentFund)investmentFundMock;
+                    investmentFund.PerformCalculationsRescue(rescueDate);
+                    investmentFundList.Add(investmentFund);
+                }
             }
-
-            return fundos;
+            return investmentFundList;
         }
     }
 }

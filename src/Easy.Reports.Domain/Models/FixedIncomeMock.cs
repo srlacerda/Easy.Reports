@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Easy.Reports.Domain.Models
 {
-    //Renda Fixa - lcis
     public class FixedIncomeMock
     {
         public decimal capitalInvestido { get; set; }
@@ -21,6 +18,5 @@ namespace Easy.Reports.Domain.Models
         public DateTime dataOperacao { get; set; }
         public decimal precoUnitario { get; set; }
         public bool primario { get; set; }
-
     }
 }

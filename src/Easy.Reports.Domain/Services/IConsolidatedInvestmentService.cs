@@ -7,8 +7,6 @@ namespace Easy.Reports.Domain.Services
 {
     public interface IConsolidatedInvestmentService
     {
-        //Task<GetResult> GetAllProducts(DateTime dataResgate);
-        Task<IEnumerable<Investment>> GetAllProducts(DateTime dataResgate);
-
+        Task<IEnumerable<Investment>> GetAllInvestmentsAsync(DateTime rescueDate);
     }
 }

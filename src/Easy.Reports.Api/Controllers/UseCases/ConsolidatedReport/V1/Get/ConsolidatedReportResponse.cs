@@ -6,38 +6,38 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
 {
     public class ConsolidatedReportResponse
     {
-        private const int _valorTotalInvestimentosCasasDecimais = 2;
-        private const int _valorInvestidoCasasDecimais = 4;
-        private const int _valorTotalCasasDecimais = 2;
-        private const int _irCasasDecimais = 4;
-        private const int _valorResgateCasasDecimais = 3;
+        private const int _totalValueDecimalPlace = 2;
+        private const int _investedValueDecimalPlace = 4;
+        private const int _investmentTotalValueDecimalPlace = 2;
+        private const int _irTaxValueDecimalPlace = 4;
+        private const int _rescueValueDecimalPlace = 3;
 
         public decimal valorTotal { get; set; }
         public IEnumerable<ConsolidatedReportInvestment> investimentos { get; set; }
 
         public static explicit operator ConsolidatedReportResponse(GetResult getResult)
         {
-            var lista = new List<ConsolidatedReportInvestment>();
+            var investments = new List<ConsolidatedReportInvestment>();
 
-            foreach (var investment in getResult.investments)
+            foreach (var investment in getResult.Investments)
             {
-                lista.Add(
+                investments.Add(
                     new ConsolidatedReportInvestment
                     {
-                        nome= investment.nome,
-                        valorInvestido = Math.Round(investment.valorInvestido, _valorInvestidoCasasDecimais),
-                        valorTotal = Math.Round(investment.valorTotal, _valorTotalCasasDecimais),
-                        vencimento = investment.vencimento,
-                        ir = Math.Round(investment.ir, _irCasasDecimais),
-                        valorResgate = Math.Round(investment.valorResgate, _valorResgateCasasDecimais)
+                        nome= investment.Name,
+                        valorInvestido = Math.Round(investment.InvestedValue, _investedValueDecimalPlace),
+                        valorTotal = Math.Round(investment.TotalValue, _investmentTotalValueDecimalPlace),
+                        vencimento = investment.DueDate,
+                        ir = Math.Round(investment.IrTaxValue, _irTaxValueDecimalPlace),
+                        valorResgate = Math.Round(investment.RescueValue, _rescueValueDecimalPlace)
                     }
                 );
             }
 
             return new ConsolidatedReportResponse
             {
-                valorTotal = Math.Round(getResult.valorTotal, _valorTotalInvestimentosCasasDecimais),
-                investimentos = lista
+                valorTotal = Math.Round(getResult.TotalValue, _totalValueDecimalPlace),
+                investimentos = investments
             };
         }
     }

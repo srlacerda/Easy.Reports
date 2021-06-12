@@ -7,7 +7,7 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 {
     public class GetResult
     {
-        public decimal valorTotal { get; set; }
-        public IEnumerable<Investment> investments { get; set; }
+        public decimal TotalValue { get; set; }
+        public IEnumerable<Investment> Investments { get; set; }
     }
 }

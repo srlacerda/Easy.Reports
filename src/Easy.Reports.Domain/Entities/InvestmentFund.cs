@@ -1,27 +1,25 @@
 ﻿using Easy.Reports.Domain.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Easy.Reports.Domain.Entities
 {
     public class InvestmentFund : Investment
     {
-        private const decimal _irPercentual = 0.15m;
-        public override void EfetuarCalculosResgate(DateTime dataResgate)
+        private const decimal _irTaxPercentage = 0.15m;
+        public override void PerformCalculationsRescue(DateTime rescueDate)
         {
-            EfetuarCalculos(dataResgate, _irPercentual);
+            PerformCalculations(rescueDate, _irTaxPercentage);
         }
 
         public static explicit operator InvestmentFund(InvestmentFundMock investmentFundMock)
         {
             return new InvestmentFund
             {
-                valorInvestido = investmentFundMock.capitalInvestido,
-                valorTotal = investmentFundMock.ValorAtual,
-                vencimento = investmentFundMock.dataResgate,
-                dataDeCompra = investmentFundMock.dataCompra,
-                nome = investmentFundMock.nome
+                InvestedValue = investmentFundMock.capitalInvestido,
+                TotalValue = investmentFundMock.ValorAtual,
+                DueDate = investmentFundMock.dataResgate,
+                PurchaseDate = investmentFundMock.dataCompra,
+                Name = investmentFundMock.nome
             };
         }
     }

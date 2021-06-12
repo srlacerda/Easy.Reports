@@ -14,23 +14,22 @@ namespace Easy.Reports.Application.Services
         {
             _mockService = mockService;
         }
-
-        public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirect(DateTime dataResgate)
+        public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirectAsync(DateTime rescueDate)
         {
             var treasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
-            var tds = new List<TreasuryDirect>();
+            var treasuryDirectList = new List<TreasuryDirect>();
 
             if (treasuryDirectMockModel.IsSuccessStatusCode)
             {
                 foreach (var treasuryDirectMock in treasuryDirectMockModel.Content.tds)
                 {
-                    var td = (TreasuryDirect)treasuryDirectMock;
-                    td.EfetuarCalculosResgate(dataResgate);
-                    tds.Add(td);
+                    var treasuryDirect = (TreasuryDirect)treasuryDirectMock;
+                    treasuryDirect.PerformCalculationsRescue(rescueDate);
+                    treasuryDirectList.Add(treasuryDirect);
                 }
             }
             
-            return tds;
+            return treasuryDirectList;
            
         }
     }

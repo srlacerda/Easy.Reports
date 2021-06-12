@@ -3,7 +3,6 @@ using Easy.Reports.Domain.Services;
 using Easy.Reports.Infra.ExternalServices.Client.Mock;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Easy.Reports.Application.Services
@@ -15,20 +14,21 @@ namespace Easy.Reports.Application.Services
         {
             _mockService = mockService;
         }
-
-        public async Task<IEnumerable<FixedIncome>> GetFixedIncome(DateTime dataResgate)
+        public async Task<IEnumerable<FixedIncome>> GetFixedIncomeAsync(DateTime rescueDate)
         {
             var fixedIncomeMockModel = await _mockService.GetFixedIncomeAsync();
-            List<FixedIncome> lcis = new List<FixedIncome>();
+            var fixedIncomeList = new List<FixedIncome>();
 
-            foreach (var fixedIncomeMock in fixedIncomeMockModel.lcis)
+            if (fixedIncomeMockModel.IsSuccessStatusCode)
             {
-                var lci = (FixedIncome)fixedIncomeMock;
-                lci.EfetuarCalculosResgate(dataResgate);
-                lcis.Add(lci);
+                foreach (var fixedIncomeMock in fixedIncomeMockModel.Content.lcis)
+                {
+                    var fixedIncome = (FixedIncome)fixedIncomeMock;
+                    fixedIncome.PerformCalculationsRescue(rescueDate);
+                    fixedIncomeList.Add(fixedIncome);
+                }
             }
-
-            return lcis;
+            return fixedIncomeList;
         }
     }
 }

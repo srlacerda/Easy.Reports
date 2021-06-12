@@ -1,28 +1,25 @@
 ﻿using Easy.Reports.Domain.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Easy.Reports.Domain.Entities
 {
     public class TreasuryDirect : Investment
     {
-        private const decimal _irPercentual = 0.10m;
-
-        public override void EfetuarCalculosResgate(DateTime dataResgate)
+        private const decimal _irTaxPercentage = 0.10m;
+        public override void PerformCalculationsRescue(DateTime rescueDate)
         {
-            EfetuarCalculos(dataResgate, _irPercentual);
+            PerformCalculations(rescueDate, _irTaxPercentage);
         }
 
         public static explicit operator TreasuryDirect(TreasuryDirectMock treasuryDirectMockModel)
         {
             return new TreasuryDirect
             {
-                valorInvestido = treasuryDirectMockModel.valorInvestido,
-                valorTotal = treasuryDirectMockModel.valorTotal,
-                vencimento = treasuryDirectMockModel.vencimento,
-                dataDeCompra = treasuryDirectMockModel.dataDeCompra,
-                nome = treasuryDirectMockModel.nome
+                InvestedValue = treasuryDirectMockModel.valorInvestido,
+                TotalValue = treasuryDirectMockModel.valorTotal,
+                DueDate = treasuryDirectMockModel.vencimento,
+                PurchaseDate = treasuryDirectMockModel.dataDeCompra,
+                Name = treasuryDirectMockModel.nome
             };
         }
     }

@@ -18,41 +18,31 @@ namespace Easy.Reports.Application.Services
             _fixedIncomeService = fixedIncomeService;
             _investmentFundService = investmentFundService;
         }
-        public async Task<IEnumerable<Investment>> GetAllProducts(DateTime dataResgate)
-        //public async Task<GetResult> GetAllProducts(DateTime dataResgate, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Investment>> GetAllInvestmentsAsync(DateTime rescueDate)
         {
             var result = await Task.WhenAll(
-                GetTreasuryDirect(dataResgate),
-                GetFixedIncome(dataResgate),
-                GetInvestmentFund(dataResgate)
+                GetTreasuryDirectAsync(rescueDate),
+                GetFixedIncomeAsync(rescueDate),
+                GetInvestmentFundAsync(rescueDate)
             );
             
             var investments = result.Aggregate((r1, r2) => r1.Concat(r2));
             return investments;
-            //GetResult getResult = new _GetResult
-            //{
-            //    valorTotal = investments.Sum(i => i.valorResgate),
-            //    investments = investments
-            //};
-
-            //return getResult;
         }
 
-        private async Task<IEnumerable<Investment>> GetTreasuryDirect(DateTime dataResgate)
+        private async Task<IEnumerable<Investment>> GetTreasuryDirectAsync(DateTime rescueDate)
         {
-            return await _treasuryDirectService.GetTreasuryDirect(dataResgate);
+            return await _treasuryDirectService.GetTreasuryDirectAsync(rescueDate);
         }
 
-        private async Task<IEnumerable<Investment>> GetFixedIncome(DateTime dataResgate)
+        private async Task<IEnumerable<Investment>> GetFixedIncomeAsync(DateTime rescueDate)
         {
-            return await _fixedIncomeService.GetFixedIncome(dataResgate);
+            return await _fixedIncomeService.GetFixedIncomeAsync(rescueDate);
         }
 
-        private async Task<IEnumerable<Investment>> GetInvestmentFund(DateTime dataResgate)
+        private async Task<IEnumerable<Investment>> GetInvestmentFundAsync(DateTime rescueDate)
         {
-            return await _investmentFundService.GetInvestmentFund(dataResgate);
+            return await _investmentFundService.GetInvestmentFundAsync(rescueDate);
         }
-
-        
     }
 }

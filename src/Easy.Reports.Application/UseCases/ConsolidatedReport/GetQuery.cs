@@ -1,23 +1,16 @@
 ﻿using MediatR;
 using System;
-using System.Collections;
 
 namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 {
-    //public class GetQuery : IRequest<GetResult>
     public class GetQuery : IRequest<GetResult>
-
     {
-        public DateTime dateRequest { get; set; }
+        public DateTime RescueDate { get; set; }
 
         protected GetQuery(){}
-        public GetQuery(DateTime dateRequest)
+        public GetQuery(DateTime rescueDate)
         {
-            this.dateRequest = dateRequest;
+           RescueDate = rescueDate;
         }
-        //public GetQuery()
-        //{
-        //    DateRequest = DateTime.Now;
-        //}
     }
 }

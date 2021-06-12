@@ -37,7 +37,6 @@ namespace Easy.Reports.Api.Setup
 
         private static void RegisterInternalServices(this IServiceCollection services)
         {
-            //services.AddScoped<IConsolidatedInvestmentService, ConsolidatedInvestmentService>();
             services.AddScoped<IConsolidatedInvestmentService, ConsolidatedInvestmentService>();
             services.AddScoped<ITreasuryDirectService, TreasuryDirectService>();
             services.AddScoped<IFixedIncomeService, FixedIncomeService>();

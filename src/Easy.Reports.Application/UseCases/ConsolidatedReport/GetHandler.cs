@@ -1,8 +1,6 @@
 ﻿using Easy.Reports.Domain.Services;
-using Easy.Reports.Infra.ExternalServices.Client.Mock;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,31 +11,30 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
     {
         private const string cashKey = "GetConsolidatedReport";
         private readonly IMemoryCache _memoryCache;
-        private readonly IMockService _mockService;
         private readonly IConsolidatedInvestmentService _consolidatedInvestmentService;
-        public GetHandler(IConsolidatedInvestmentService consolidatedInvestmentService, IMemoryCache memoryCach, IMockService mockService)
+        public GetHandler(IMemoryCache memoryCach, IConsolidatedInvestmentService consolidatedInvestmentService)
         {
-            _consolidatedInvestmentService = consolidatedInvestmentService;
             _memoryCache = memoryCach;
-            _mockService = mockService;
+            _consolidatedInvestmentService = consolidatedInvestmentService;
         }
         public async Task<GetResult> Handle(GetQuery request, CancellationToken cancellationToken)
         {
-           
             if (!_memoryCache.TryGetValue(cashKey, out GetResult getResult))
             {
-                var opcoesDoCache = new MemoryCacheEntryOptions()
+                var memoryCacheEntryOptions = new MemoryCacheEntryOptions()
                 {
-                    AbsoluteExpiration = request.dateRequest.Date.AddDays(1)
+                    AbsoluteExpiration = request.RescueDate.Date.AddDays(1)
                 };
 
-                var investments = await _consolidatedInvestmentService.GetAllProducts(request.dateRequest);
-                
-                getResult = new GetResult();
-                getResult.valorTotal = investments.Sum(i => i.valorResgate);
-                getResult.investments = investments;
+                var investments = await _consolidatedInvestmentService.GetAllInvestmentsAsync(request.RescueDate);
 
-                _memoryCache.Set(cashKey, getResult, opcoesDoCache);
+                getResult = new GetResult
+                {
+                    TotalValue = investments.Sum(i => i.RescueValue),
+                    Investments = investments
+                };
+
+                _memoryCache.Set(cashKey, getResult, memoryCacheEntryOptions);
             }
 
             return getResult;

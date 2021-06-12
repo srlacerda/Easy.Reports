@@ -1,66 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Easy.Reports.Domain.Entities
 {
-    public abstract class Investment //: IInvestment
+    public abstract class Investment
     {
-        private const decimal _menosDaMetadeDoTempoEmCustodia = 0.30m;
-        private const decimal _maisDaMetadeDoTempoEmCustodia = 0.15m;
-        private const decimal _ateTresMesesParaVencer = 0.06m;
-        private const decimal _maiorIgualVencimento = 0m;
+        private const decimal _lessThanHalfTimeInCustody = 0.30m; //_menosDaMetadeDoTempoEmCustodia
+        private const decimal _moreThanHalfTimeInCustody = 0.15m; //_maisDaMetadeDoTempoEmCustodia
+        private const decimal _untilThreeMonthsToDueDate = 0.06m; //_ateTresMesesParaVencer
+        private const decimal _moreOrEqualToDueDate = 0m; //_maiorIgualVencimento
 
-        public decimal valorInvestido { get; protected set; }
-        public decimal valorTotal { get; protected set; }
-        public DateTime vencimento { get; protected set; }
-        public DateTime dataDeCompra { get; protected set; }
-        public string nome { get; protected set; }
-        public decimal ir { get; protected set; }
-        public decimal valorResgate { get; protected set; }
+        public decimal InvestedValue { get; protected set; } //ValorInvestido
+        public decimal TotalValue { get; protected set; } //ValorTotal
+        public DateTime DueDate { get; protected set; } //Vencimento
+        public DateTime PurchaseDate { get; protected set; } //DataDeCompra
+        public string Name { get; protected set; } //Nome
+        public decimal IrTaxValue { get; protected set; } //Ir
+        public decimal RescueValue { get; protected set; } //ValorResgate
 
-
-        public abstract void EfetuarCalculosResgate(DateTime dataResgate);
-        protected void EfetuarCalculos(DateTime dataResgate, decimal irPercentual)
+       
+        public abstract void PerformCalculationsRescue(DateTime rescueDate); //EfetuarCalculosResgate (dataResgate)
+        protected void PerformCalculations(DateTime rescueDate, decimal irTaxPercentage) ////EfetuarCalculos (dataResgate, irPercentual)
         {
-            CalcularValorResgate(dataResgate);
-            CalcularIr(irPercentual);
+            CalculateRescueValue(rescueDate);
+            CalculateIrTax(irTaxPercentage);
         }
 
-        private void CalcularIr(decimal irPercentual)
+        private void CalculateIrTax(decimal irTaxPercentage) //CalcularIr (irPercentual)
         {
-            decimal valorRentabilidade = valorTotal - valorInvestido;
-            ir = irPercentual * valorRentabilidade;
+            decimal profitabilityValue = TotalValue - InvestedValue;
+            IrTaxValue = irTaxPercentage * profitabilityValue;
         }
 
-        private void CalcularValorResgate(DateTime dataResgate)
+        private void CalculateRescueValue(DateTime dataResgate) //CalcularValorResgate (dataResgate)
         {
-            decimal perdaPecentual;
-            
-            var periodoInvestimento = vencimento.Subtract(dataDeCompra);
-            var metadePeriodoInvestimento = periodoInvestimento.Days / 2;
-            var periodoPassadoAteHoje = dataResgate.Subtract(dataDeCompra);
+            decimal lossPercentage; //perdaPecentual
 
-            if (dataResgate >= vencimento)
+            var periodoInvestimento = DueDate.Subtract(PurchaseDate); //periodoInvestimento
+            var metadePeriodoInvestimento = periodoInvestimento.Days / 2; //metadePeriodoInvestimento
+            var periodoPassadoAteHoje = dataResgate.Subtract(PurchaseDate); //periodoPassadoAteHoje
+
+            if (dataResgate >= DueDate)
             {
-                perdaPecentual = _maiorIgualVencimento;
+                lossPercentage = _moreOrEqualToDueDate;
             }
-            else if (dataResgate > vencimento.AddMonths(-3))
+            else if (dataResgate > DueDate.AddMonths(-3))
             {
-                perdaPecentual = _ateTresMesesParaVencer;
+                lossPercentage = _untilThreeMonthsToDueDate;
             }
             else if (periodoPassadoAteHoje.Days > metadePeriodoInvestimento)
             {
-                perdaPecentual = _maisDaMetadeDoTempoEmCustodia;
+                lossPercentage = _moreThanHalfTimeInCustody;
             }
             else
             {
-                perdaPecentual = _menosDaMetadeDoTempoEmCustodia;
+                lossPercentage = _lessThanHalfTimeInCustody;
             }
 
-            valorResgate = valorTotal - (perdaPecentual * valorTotal);
+            RescueValue = TotalValue - (lossPercentage * TotalValue);
         }
-
-       
     }
 }
