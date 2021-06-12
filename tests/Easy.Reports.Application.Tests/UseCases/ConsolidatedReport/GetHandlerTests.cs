@@ -1,10 +1,4 @@
 ﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
-using Easy.Reports.Domain.Services;
-using Easy.Reports.Domain.UseCases.ConsolidatedReport;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using Xunit;
 
 namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport

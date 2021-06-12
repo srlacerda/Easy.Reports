@@ -7,7 +7,7 @@ namespace Easy.Reports.Infra.ExternalServices.Client.Mock
     {
         //[Get("/product")]
         [Get("/5e3428203000006b00d9632a")]
-        Task<TreasuryDirectMockModel> GetTreasuryDirectAsync();
+        Task<ApiResponse<TreasuryDirectMockModel>> GetTreasuryDirectAsync();
 
         //[Get("/product")]
         [Get("/5e3429a33000008c00d96336")]

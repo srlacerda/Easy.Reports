@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Easy.Reports.Domain.UseCases.ConsolidatedReport
+namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 {
     public class GetResult
     {

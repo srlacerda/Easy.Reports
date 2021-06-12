@@ -18,21 +18,20 @@ namespace Easy.Reports.Application.Services
         public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirect(DateTime dataResgate)
         {
             var treasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
-            List<TreasuryDirect> tds = new List<TreasuryDirect>();
+            var tds = new List<TreasuryDirect>();
 
-            foreach (var treasuryDirectMock in treasuryDirectMockModel.tds)
+            if (treasuryDirectMockModel.IsSuccessStatusCode)
             {
-                var td = (TreasuryDirect)treasuryDirectMock;
-                td.EfetuarCalculosResgate(dataResgate);
-                tds.Add(td);
+                foreach (var treasuryDirectMock in treasuryDirectMockModel.Content.tds)
+                {
+                    var td = (TreasuryDirect)treasuryDirectMock;
+                    td.EfetuarCalculosResgate(dataResgate);
+                    tds.Add(td);
+                }
             }
             
             return tds;
-            //HashSet<TreasuryDirect> newTds = new HashSet<TreasuryDirect>();
-            //foreach (var treasuryDirect in treasuryDirectMockModel.tds)
-            //{
-            //    newTds.Add((TreasuryDirect)treasuryDirect);
-            //}
+           
         }
     }
 }

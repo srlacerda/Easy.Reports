@@ -1,8 +1,6 @@
-﻿using Easy.Reports.Domain.UseCases.ConsolidatedReport;
+﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
 {

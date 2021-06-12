@@ -1,9 +1,9 @@
 ﻿using Easy.Reports.Domain.Services;
-using Easy.Reports.Domain.UseCases.ConsolidatedReport;
 using Easy.Reports.Infra.ExternalServices.Client.Mock;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,18 +23,20 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
         }
         public async Task<GetResult> Handle(GetQuery request, CancellationToken cancellationToken)
         {
-            GetResult getResult;
-
-            DateTime diaSeguinte = request.dateRequest.Date.AddDays(1);
-            if (!_memoryCache.TryGetValue(cashKey, out getResult))
+           
+            if (!_memoryCache.TryGetValue(cashKey, out GetResult getResult))
             {
                 var opcoesDoCache = new MemoryCacheEntryOptions()
                 {
-                    //AbsoluteExpiration = DateTime.Now.AddSeconds(500)
-                    AbsoluteExpiration = diaSeguinte
+                    AbsoluteExpiration = request.dateRequest.Date.AddDays(1)
                 };
+
+                var investments = await _consolidatedInvestmentService.GetAllProducts(request.dateRequest);
                 
-                getResult = await _consolidatedInvestmentService.GetAllProducts(request.dateRequest, cancellationToken);
+                getResult = new GetResult();
+                getResult.valorTotal = investments.Sum(i => i.valorResgate);
+                getResult.investments = investments;
+
                 _memoryCache.Set(cashKey, getResult, opcoesDoCache);
             }
 
