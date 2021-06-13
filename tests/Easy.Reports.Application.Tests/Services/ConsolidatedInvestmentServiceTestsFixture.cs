@@ -26,12 +26,12 @@ namespace Easy.Reports.Application.Tests.Services
             return new List<TreasuryDirect>
             {
                 new TreasuryDirect
-                    (
-                        investedValue: 799.4720m,
-                        totalValue: 829.68m,
-                        dueDate: new DateTime(2025, 03, 01),
-                        purchaseDate: new DateTime(2015, 03, 01),
-                        name: "Tesouro Selic 2025"
+                (
+                    investedValue: 799.4720m,
+                    totalValue: 829.68m,
+                    dueDate: new DateTime(2025, 03, 01),
+                    purchaseDate: new DateTime(2015, 03, 01),
+                    name: "Tesouro Selic 2025"
                 )
             };
         }

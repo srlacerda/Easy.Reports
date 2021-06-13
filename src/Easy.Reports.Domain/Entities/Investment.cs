@@ -43,11 +43,11 @@ namespace Easy.Reports.Domain.Entities
             {
                 lossPercentage = _moreOrEqualToDueDate;
             }
-            else if (dataResgate > DueDate.AddMonths(-3))
+            else if (dataResgate >= DueDate.AddMonths(-3))
             {
                 lossPercentage = _untilThreeMonthsToDueDate;
             }
-            else if (periodoPassadoAteHoje.Days > metadePeriodoInvestimento)
+            else if (periodoPassadoAteHoje.Days >= metadePeriodoInvestimento)
             {
                 lossPercentage = _moreThanHalfTimeInCustody;
             }
