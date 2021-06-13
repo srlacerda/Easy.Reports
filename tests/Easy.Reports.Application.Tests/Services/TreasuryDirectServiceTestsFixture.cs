@@ -1,5 +1,4 @@
 ﻿using Easy.Reports.Application.Services;
-using Easy.Reports.Domain.Entities;
 using Easy.Reports.Domain.Models;
 using Moq.AutoMock;
 using Refit;
@@ -7,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using Xunit;
 
 namespace Easy.Reports.Application.Tests.Services
