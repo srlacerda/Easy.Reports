@@ -47,19 +47,19 @@ namespace Easy.Reports.Application.Tests.Services
         {
             return new FixedIncomeMock
             {
-                InvestedCapital = 799.4720m,
-                CurrentCapital = 829.68m,
-                Quantitiy = 1,
-                DueDate = new DateTime(2025, 03, 01),
+                InvestedCapital = 2000.0m,
+                CurrentCapital = 2097.85m,
+                Quantitiy = 2.0m,
+                DueDate = new DateTime(2021, 03, 09),
                 Iof = 0,
                 OtherFees = 0,
                 Fees = 0,
-                Index = "SELIC",
-                InvestmentType = "TD",
-                Name = "Tesouro Selic 2025",
-                GuaranteedFgc = false,
-                OperationDate = new DateTime(2015, 03, 01),
-                UnitPrice = 1m,
+                Index = "97% do CDI",
+                InvestmentType = "LCI",
+                Name = "BANCO MAXIMA",
+                GuaranteedFgc = true,
+                OperationDate = new DateTime(2019, 03, 14),
+                UnitPrice = 1048.92745m,
                 Primary = false
             };
         }

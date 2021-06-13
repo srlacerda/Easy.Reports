@@ -20,13 +20,13 @@ namespace Easy.Reports.Application.Services
         }
         public async Task<IEnumerable<Investment>> GetAllCalculatedInvestmentsAsync(DateTime rescueDate)
         {
-            var result = await Task.WhenAll(
+            var resultInvestments = await Task.WhenAll(
                 GetCalculatedTreasuryDirectAsync(rescueDate),
                 GetCalculatedFixedIncomeAsync(rescueDate),
                 GetCalculatedInvestmentFundAsync(rescueDate)
             );
             
-            var investments = result.Aggregate((r1, r2) => r1.Concat(r2));
+            var investments = resultInvestments.Aggregate((r1, r2) => r1.Concat(r2));
             return investments;
         }
 

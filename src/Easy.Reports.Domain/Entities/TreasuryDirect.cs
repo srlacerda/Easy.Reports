@@ -19,8 +19,6 @@ namespace Easy.Reports.Domain.Entities
             DueDate = dueDate;
             PurchaseDate = purchaseDate;
             Name = name;
-            //IrTaxValue = 0;
-            //RescueValue 
         }
         public static explicit operator TreasuryDirect(TreasuryDirectMock treasuryDirectMockModel)
         {

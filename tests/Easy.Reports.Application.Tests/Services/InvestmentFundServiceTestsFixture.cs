@@ -47,13 +47,13 @@ namespace Easy.Reports.Application.Tests.Services
         {
             return new InvestmentFundMock
             {
-                InvestedCapital = 799.4720m,
-                CurrentValue = 829.68m,
-                RescueDate = new DateTime(2025, 03, 01),
-                PurchaseDate = new DateTime(2015, 03, 01),
+                InvestedCapital = 1000.0m,
+                CurrentValue = 1159m,
+                RescueDate = new DateTime(2022, 10, 01),
+                PurchaseDate = new DateTime(2017, 10, 01),
                 Iof = 0,
-                Name = "Tesouro Selic 2025",
-                TotalFees = 0,
+                Name = "ALASKA",
+                TotalFees = 53.49m,
                 Quantity = 1,
             };
         }
