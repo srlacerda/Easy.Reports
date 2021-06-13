@@ -10,7 +10,16 @@ namespace Easy.Reports.Domain.Entities
         {
             PerformCalculations(rescueDate, _irTaxPercentage);
         }
+        public TreasuryDirect(){}
 
+        public TreasuryDirect(decimal investedValue, decimal totalValue, DateTime dueDate, DateTime purchaseDate, string name)
+        {
+            InvestedValue = investedValue;
+            TotalValue = totalValue;
+            DueDate = dueDate;
+            PurchaseDate = purchaseDate;
+            Name = name;
+        }
         public static explicit operator TreasuryDirect(TreasuryDirectMock treasuryDirectMockModel)
         {
             return new TreasuryDirect

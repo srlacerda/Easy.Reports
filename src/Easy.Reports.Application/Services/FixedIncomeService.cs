@@ -14,7 +14,7 @@ namespace Easy.Reports.Application.Services
         {
             _mockService = mockService;
         }
-        public async Task<IEnumerable<FixedIncome>> GetFixedIncomeAsync(DateTime rescueDate)
+        public async Task<IEnumerable<FixedIncome>> GetCalculatedFixedIncomeAsync(DateTime rescueDate)
         {
             var fixedIncomeMockModel = await _mockService.GetFixedIncomeAsync();
             var fixedIncomeList = new List<FixedIncome>();

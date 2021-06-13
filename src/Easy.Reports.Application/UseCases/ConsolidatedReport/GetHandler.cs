@@ -26,7 +26,7 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
                     AbsoluteExpiration = request.RescueDate.Date.AddDays(1)
                 };
 
-                var investments = await _consolidatedInvestmentService.GetAllInvestmentsAsync(request.RescueDate);
+                var investments = await _consolidatedInvestmentService.GetAllCalculatedInvestmentsAsync(request.RescueDate);
 
                 getResult = new GetResult
                 {

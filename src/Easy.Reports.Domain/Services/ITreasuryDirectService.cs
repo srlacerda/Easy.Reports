@@ -7,6 +7,6 @@ namespace Easy.Reports.Domain.Services
 {
     public interface ITreasuryDirectService
     {
-        Task<IEnumerable<TreasuryDirect>> GetTreasuryDirectAsync(DateTime rescueDate);
+        Task<IEnumerable<TreasuryDirect>> GetCalculatedTreasuryDirectAsync(DateTime rescueDate);
     }
 }

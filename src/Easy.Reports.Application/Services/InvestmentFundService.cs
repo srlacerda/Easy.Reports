@@ -14,7 +14,7 @@ namespace Easy.Reports.Application.Services
         {
             _mockService = mockService;
         }
-        public async Task<IEnumerable<InvestmentFund>> GetInvestmentFundAsync(DateTime rescueDate)
+        public async Task<IEnumerable<InvestmentFund>> GetCalculatedInvestmentFundAsync(DateTime rescueDate)
         {
             var investmentFundMockModel = await _mockService.GetInvestmentFundAsync();
             var investmentFundList = new List<InvestmentFund>();

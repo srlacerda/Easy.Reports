@@ -14,7 +14,7 @@ namespace Easy.Reports.Application.Services
         {
             _mockService = mockService;
         }
-        public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirectAsync(DateTime rescueDate)
+        public async Task<IEnumerable<TreasuryDirect>> GetCalculatedTreasuryDirectAsync(DateTime rescueDate)
         {
             var treasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
             var treasuryDirectList = new List<TreasuryDirect>();
