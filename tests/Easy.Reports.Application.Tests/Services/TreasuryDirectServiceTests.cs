@@ -3,6 +3,7 @@ using Easy.Reports.Infra.ExternalServices.Client.Mock;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -20,13 +21,39 @@ namespace Easy.Reports.Application.Tests.Services
             _treasuryDirectService = _treasuryDirectServiceTestsFixture.CreateTreasuryDirectService();
         }
 
-        [Fact(DisplayName = "Must Get Sucessfully")]
+        [Fact(DisplayName = "Get Calculated Treasury Direct Ok")]
         [Trait("Category", "TreasuryDirect - Service")]
-        public async Task TreasuryDirectService_GetCalculatedTreasuryDirectAsync_MustGetSucessfully()
+        public async Task TreasuryDirectService_CalculatedTreasuryDirectAsync_MustGetOk()
         {
             // Arrange
             var rescueDate = new DateTime(2021, 06, 14);
             var treasuryDirectMockModel = _treasuryDirectServiceTestsFixture.GenerateApiResponseTreasuryDirectMockModelOk();
+            var treasuryDirectMockModelListFirst = treasuryDirectMockModel.Content.TreasuryDirectList.ToList().FirstOrDefault();
+
+            _treasuryDirectServiceTestsFixture.Mocker.GetMock<IMockService>()
+                .Setup(mc => mc.GetTreasuryDirectAsync())
+                .ReturnsAsync(treasuryDirectMockModel);
+
+            // Act
+            var result = await _treasuryDirectService.GetCalculatedTreasuryDirectAsync(rescueDate);
+            var resultTreasuryDirectFirst = result.FirstOrDefault();
+
+            // Assert
+            _treasuryDirectServiceTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetTreasuryDirectAsync(), Times.Once);
+            Assert.Equal(treasuryDirectMockModelListFirst.InvestedValue, resultTreasuryDirectFirst.InvestedValue);
+            Assert.Equal(treasuryDirectMockModelListFirst.TotalValue, resultTreasuryDirectFirst.TotalValue);
+            Assert.Equal(treasuryDirectMockModelListFirst.DueDate, resultTreasuryDirectFirst.DueDate);
+            Assert.Equal(treasuryDirectMockModelListFirst.PurchaseDate, resultTreasuryDirectFirst.PurchaseDate);
+            Assert.Equal(treasuryDirectMockModelListFirst.Name, resultTreasuryDirectFirst.Name);
+        }
+
+        [Fact(DisplayName = "Get Calculated Treasury Direct Not Ok")]
+        [Trait("Category", "TreasuryDirect - Service")]
+        public async Task TreasuryDirectService_CalculatedTreasuryDirectAsync_MustGetNotOK()
+        {
+            // Arrange
+            var rescueDate = new DateTime(2021, 06, 14);
+            var treasuryDirectMockModel = _treasuryDirectServiceTestsFixture.GenerateApiResponseTreasuryDirectMockModelNotOk();
 
             _treasuryDirectServiceTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetTreasuryDirectAsync())
@@ -35,14 +62,9 @@ namespace Easy.Reports.Application.Tests.Services
             // Act
             var result = await _treasuryDirectService.GetCalculatedTreasuryDirectAsync(rescueDate);
 
-            Assert.True(result.ToString() == "");
             // Assert
-            //_getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>().Verify(c => c.GetAllCalculatedInvestmentsAsync(getQuery.RescueDate), Times.Once);
-            //Assert.Equal(investments.FirstOrDefault().InvestedValue, result.FirstOrDefault().InvestedValue);
-            //Assert.Equal(investments.FirstOrDefault().TotalValue, result.FirstOrDefault().TotalValue);
-            //Assert.Equal(investments.FirstOrDefault().DueDate, result.FirstOrDefault().DueDate);
-            //Assert.Equal(investments.FirstOrDefault().PurchaseDate, result.FirstOrDefault().PurchaseDate);
-            //Assert.Equal(investments.FirstOrDefault().Name, result.FirstOrDefault().Name);
+            _treasuryDirectServiceTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetTreasuryDirectAsync(), Times.Once);
+            Assert.Empty(result);
         }
     }
 }

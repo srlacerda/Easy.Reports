@@ -28,8 +28,10 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
         }
         public List<Investment> GenerateInvestments()
         {
-            var investments = new List<Investment>();
-            investments.Add(GenerateTreasuryDirect());
+            var investments = new List<Investment>
+            {
+                GenerateTreasuryDirect()
+            };
             return investments;
         }
 

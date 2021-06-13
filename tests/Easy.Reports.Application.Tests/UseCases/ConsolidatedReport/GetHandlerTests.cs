@@ -22,15 +22,15 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             _getHandler = _getHandlerTestsFixture.CreateInstanceGetHandler();
         }
 
-        [Fact(DisplayName = "Consolidated Report Get Sucess")]
+        [Fact(DisplayName = "Get Consolidated Report Ok")]
         [Trait("Category", "ConsolidatedReport - GetHandler")]
-        public async Task ConsolidateReport_Get_SucessAsync()
+        public async Task ConsolidateReport_Get_MustGetOk()
         {
             // Arrange
             CancellationToken cancellationToken = CancellationToken.None;
             var getQuery = _getHandlerTestsFixture.GenerateGetQuery();
             var investments = _getHandlerTestsFixture.GenerateInvestments();
-
+            var investmentsFirst = investments.FirstOrDefault();
             #region mocking IMemoryCache
             string keyPayload = null;
             _getHandlerTestsFixture.Mocker.GetMock<IMemoryCache>()
@@ -54,15 +54,16 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
                 .ReturnsAsync(investments);
 
             // Act
-            var result = (await _getHandler.Handle(getQuery, cancellationToken)).Investments.ToList();
+            var result = await _getHandler.Handle(getQuery, cancellationToken);
+            var resultInvestmentsListFirst = result.Investments.ToList().FirstOrDefault();
 
             // Assert
             _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>().Verify(c => c.GetAllCalculatedInvestmentsAsync(getQuery.RescueDate), Times.Once);
-            Assert.Equal(investments.FirstOrDefault().InvestedValue, result.FirstOrDefault().InvestedValue);
-            Assert.Equal(investments.FirstOrDefault().TotalValue, result.FirstOrDefault().TotalValue);
-            Assert.Equal(investments.FirstOrDefault().DueDate, result.FirstOrDefault().DueDate);
-            Assert.Equal(investments.FirstOrDefault().PurchaseDate, result.FirstOrDefault().PurchaseDate);
-            Assert.Equal(investments.FirstOrDefault().Name, result.FirstOrDefault().Name);
+            Assert.Equal(investmentsFirst.InvestedValue, resultInvestmentsListFirst.InvestedValue);
+            Assert.Equal(investmentsFirst.TotalValue, resultInvestmentsListFirst.TotalValue);
+            Assert.Equal(investmentsFirst.DueDate, resultInvestmentsListFirst.DueDate);
+            Assert.Equal(investmentsFirst.PurchaseDate, resultInvestmentsListFirst.PurchaseDate);
+            Assert.Equal(investmentsFirst.Name, resultInvestmentsListFirst.Name);
         }
     }
 }

@@ -39,6 +39,12 @@ namespace Easy.Reports.Application.Tests.Services
             return new ApiResponse<TreasuryDirectMockModel>(httpResponseMessage, treasuryDirectMockModel);
         }
 
+        public ApiResponse<TreasuryDirectMockModel> GenerateApiResponseTreasuryDirectMockModelNotOk()
+        {
+            var httpResponseMessage = new HttpResponseMessage { StatusCode = HttpStatusCode.InternalServerError };
+            return new ApiResponse<TreasuryDirectMockModel>(httpResponseMessage, null);
+        }
+
         private TreasuryDirectMock GenerateTreasuryDirectMock()
         {
             return new TreasuryDirectMock
@@ -52,15 +58,6 @@ namespace Easy.Reports.Application.Tests.Services
                 InvestmentType = "TD",
                 Name = "Tesouro Selic 2025"
             };
-        }
-        private TreasuryDirect GenerateTreasuryDirect()
-        {
-            return new TreasuryDirect(
-                investedValue: 1000,
-                totalValue: 2000,
-                dueDate: new DateTime(2015, 03, 01),
-                purchaseDate: new DateTime(2015, 03, 01),
-                name: "Tesouro Selic 2025");
         }
 
         public void Dispose()
