@@ -24,7 +24,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
 
         public GetQuery GenerateGetQuery()
         {
-            return new GetQuery(new DateTime(2021, 12, 08));
+            return new GetQuery(new DateTime(2021, 06, 14));
         }
         public List<Investment> GenerateInvestments()
         {

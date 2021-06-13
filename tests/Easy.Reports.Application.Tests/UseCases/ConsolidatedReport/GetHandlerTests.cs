@@ -22,8 +22,8 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             _getHandler = _getHandlerTestsFixture.CreateInstanceGetHandler();
         }
 
-        [Fact(DisplayName = "Get Consolidate Report Sucess")]
-        [Trait("Categoria", "ConsolidateReport - GetHandler")]
+        [Fact(DisplayName = "Consolidated Report Get Sucess")]
+        [Trait("Category", "ConsolidatedReport - GetHandler")]
         public async Task ConsolidateReport_Get_SucessAsync()
         {
             // Arrange
