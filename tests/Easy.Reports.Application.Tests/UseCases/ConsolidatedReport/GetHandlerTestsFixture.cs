@@ -26,7 +26,13 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
         {
             return new GetQuery(new DateTime(2021, 06, 14));
         }
-        public List<Investment> GenerateInvestments()
+
+        public List<Investment> GenerateInvestmentsNotOk()
+        {
+            return new List<Investment>();
+        }
+
+        public List<Investment> GenerateInvestmentsOk()
         {
             var investments = new List<Investment>
             {
