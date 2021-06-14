@@ -35,9 +35,9 @@ namespace Easy.Reports.Domain.Entities
         {
             decimal lossPercentage; //perdaPecentual
 
-            var periodoInvestimento = DueDate.Subtract(PurchaseDate); //periodoInvestimento
-            var metadePeriodoInvestimento = periodoInvestimento.Days / 2; //metadePeriodoInvestimento
-            var periodoPassadoAteHoje = dataResgate.Subtract(PurchaseDate); //periodoPassadoAteHoje
+            var investmentPeriod = DueDate.Subtract(PurchaseDate); //periodoInvestimento
+            var halfInvestmentPeriod = investmentPeriod.Days / 2; //metadePeriodoInvestimento
+            var untilTodayPeriod = dataResgate.Subtract(PurchaseDate); //periodoPassadoAteHoje
 
             if (dataResgate >= DueDate)
             {
@@ -47,7 +47,7 @@ namespace Easy.Reports.Domain.Entities
             {
                 lossPercentage = _untilThreeMonthsToDueDate;
             }
-            else if (periodoPassadoAteHoje.Days >= metadePeriodoInvestimento)
+            else if (untilTodayPeriod.Days >= halfInvestmentPeriod)
             {
                 lossPercentage = _moreThanHalfTimeInCustody;
             }

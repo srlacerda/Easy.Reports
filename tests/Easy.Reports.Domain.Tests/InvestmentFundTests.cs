@@ -20,7 +20,7 @@ namespace Easy.Reports.Domain.Tests
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With Rescue Date Equal Due Date")]
-        [Trait("Category", "InvestmentFund - Entitie")]
+        [Trait("Category", "Entitie - InvestmentFund")]
         public void InvestmentFund_PerformCalculationsRescue_RescueDateEqualDueDate()
         {
             // Arrange
@@ -34,7 +34,7 @@ namespace Easy.Reports.Domain.Tests
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With Rescue Date More Than Due Date")]
-        [Trait("Category", "InvestmentFund - Entitie")]
+        [Trait("Category", "Entitie - InvestmentFund")]
         public void InvestmentFund_PerformCalculationsRescue_RescueDateMoreThanDueDate()
         {
             // Arrange
@@ -48,7 +48,7 @@ namespace Easy.Reports.Domain.Tests
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With Three Months To Due Date")]
-        [Trait("Category", "InvestmentFund - Entitie")]
+        [Trait("Category", "Entitie - InvestmentFund")]
         public void InvestmentFund_PerformCalculationsRescue_ThreeMonthsToDueDate()
         {
             // Arrange
@@ -62,7 +62,7 @@ namespace Easy.Reports.Domain.Tests
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With More Than Half Time In Custody")]
-        [Trait("Category", "InvestmentFund - Entitie")]
+        [Trait("Category", "Entitie - InvestmentFund")]
         public void InvestmentFund_PerformCalculationsRescue_MoreThanHalfTimeInCustody()
         {
             // Arrange
@@ -76,7 +76,7 @@ namespace Easy.Reports.Domain.Tests
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With Less Than Half Time In Custody")]
-        [Trait("Category", "InvestmentFund - Entitie")]
+        [Trait("Category", "Entitie - InvestmentFund")]
         public void InvestmentFund_PerformCalculationsRescue_LessThanHalfTimeInCustody()
         {
             // Arrange
@@ -90,7 +90,7 @@ namespace Easy.Reports.Domain.Tests
         }
 
         [Fact(DisplayName = "Calculate Ir Tax Value")]
-        [Trait("Category", "InvestmentFund - Entitie")]
+        [Trait("Category", "Entitie - InvestmentFund")]
         public void InvestmentFund_PerformCalculationsRescue_CalculateIrTaxValue()
         {
             // Arrange

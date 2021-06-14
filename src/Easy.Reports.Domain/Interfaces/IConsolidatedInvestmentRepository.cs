@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Reports.Domain.Services
+namespace Easy.Reports.Domain.Interfaces
 {
-    public interface IConsolidatedInvestmentService
+    public interface IConsolidatedInvestmentRepository
     {
         Task<IEnumerable<Investment>> GetAllCalculatedInvestmentsAsync(DateTime rescueDate);
     }

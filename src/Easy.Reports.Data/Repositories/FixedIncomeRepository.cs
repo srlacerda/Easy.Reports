@@ -1,27 +1,26 @@
 ﻿using Easy.Reports.Domain.Entities;
-using Easy.Reports.Domain.Services;
-using Easy.Reports.Infra.ExternalServices.Client.Mock;
+using Easy.Reports.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Reports.Application.Services
+namespace Easy.Reports.Data.Repositories
 {
-    public class FixedIncomeService : IFixedIncomeService
+    public class FixedIncomeRepository : IFixedIncomeRepository
     {
         private readonly IMockService _mockService;
-        public FixedIncomeService(IMockService mockService)
+        public FixedIncomeRepository(IMockService mockService)
         {
             _mockService = mockService;
         }
         public async Task<IEnumerable<FixedIncome>> GetCalculatedFixedIncomeAsync(DateTime rescueDate)
         {
-            var fixedIncomeMockModel = await _mockService.GetFixedIncomeAsync();
+            var apiResponseFixedIncomeMockModel = await _mockService.GetFixedIncomeAsync();
             var fixedIncomeList = new List<FixedIncome>();
 
-            if (fixedIncomeMockModel.IsSuccessStatusCode)
+            if (apiResponseFixedIncomeMockModel.IsSuccessStatusCode)
             {
-                foreach (var fixedIncomeMock in fixedIncomeMockModel.Content.FixedIncomeList)
+                foreach (var fixedIncomeMock in apiResponseFixedIncomeMockModel.Content.FixedIncomeList)
                 {
                     var fixedIncome = (FixedIncome)fixedIncomeMock;
                     fixedIncome.PerformCalculationsRescue(rescueDate);

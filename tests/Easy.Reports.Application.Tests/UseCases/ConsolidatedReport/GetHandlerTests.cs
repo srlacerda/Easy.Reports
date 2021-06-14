@@ -1,5 +1,5 @@
 ﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
-using Easy.Reports.Domain.Services;
+using Easy.Reports.Domain.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using System;
@@ -16,7 +16,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
         private readonly GetHandlerTestsFixture _getHandlerTestsFixture;
         private readonly GetHandler _getHandler;
         private readonly GetQuery _getQuery;
-        private CancellationToken _cancellationToken = CancellationToken.None;
+        private readonly CancellationToken _cancellationToken = CancellationToken.None;
         public GetHandlerTests(GetHandlerTestsFixture getHandlerTestsFixture)
         {
             _getHandlerTestsFixture = getHandlerTestsFixture;
@@ -25,7 +25,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
         }
 
         [Fact(DisplayName = "Get Consolidated Report Ok")]
-        [Trait("Category", "ConsolidatedReport - GetHandler")]
+        [Trait("Category", "UseCase - ConsolidatedReport - Get")]
         public async Task ConsolidateReport_Get_MustGetOk()
         {
             // Arrange
@@ -50,7 +50,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
                 .Callback<TimeSpan?>(dto => expirationPayload = dto);
             #endregion
 
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>()
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>()
                 .Setup(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate))
                 .ReturnsAsync(investments);
 
@@ -59,7 +59,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             var resultInvestmentsListFirst = result.Investments.ToList().FirstOrDefault();
 
             // Assert
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
             Assert.Equal(investmentsFirst.InvestedValue, resultInvestmentsListFirst.InvestedValue);
             Assert.Equal(investmentsFirst.TotalValue, resultInvestmentsListFirst.TotalValue);
             Assert.Equal(investmentsFirst.DueDate, resultInvestmentsListFirst.DueDate);
@@ -68,7 +68,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
         }
 
         [Fact(DisplayName = "Get Consolidated Report Not Ok")]
-        [Trait("Category", "ConsolidatedReport - GetHandler")]
+        [Trait("Category", "UseCase - ConsolidatedReport - Get")]
         public async Task ConsolidateReport_Get_MustGetNotOk()
         {
             // Arrange
@@ -92,7 +92,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
                 .Callback<TimeSpan?>(dto => expirationPayload = dto);
             #endregion
 
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>()
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>()
                 .Setup(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate))
                 .ReturnsAsync(investments);
 
@@ -100,7 +100,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             var result = await _getHandler.Handle(_getQuery, _cancellationToken);
 
             // Assert
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
             Assert.Empty(result.Investments);
         }
     }

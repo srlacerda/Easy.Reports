@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Reports.Domain.Services
+namespace Easy.Reports.Domain.Interfaces
 {
-    public interface ITreasuryDirectService
+    public interface ITreasuryDirectRepository
     {
         Task<IEnumerable<TreasuryDirect>> GetCalculatedTreasuryDirectAsync(DateTime rescueDate);
     }

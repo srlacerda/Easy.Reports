@@ -1,4 +1,4 @@
-﻿using Easy.Reports.Application.Services;
+﻿using Easy.Reports.Data.Repositories;
 using Easy.Reports.Domain.Models;
 using Moq.AutoMock;
 using Refit;
@@ -8,20 +8,20 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 
-namespace Easy.Reports.Application.Tests.Services
+namespace Easy.Reports.Data.Tests.Repositories
 {
-    [CollectionDefinition(nameof(TreasuryDirectServiceCollection))]
-    public class TreasuryDirectServiceCollection : ICollectionFixture<TreasuryDirectServiceTestsFixture> { }
-    public class TreasuryDirectServiceTestsFixture : IDisposable
+    [CollectionDefinition(nameof(TreasuryDirectRepositoryCollection))]
+    public class TreasuryDirectRepositoryCollection : ICollectionFixture<TreasuryDirectRepositoryTestsFixture> { }
+    public class TreasuryDirectRepositoryTestsFixture : IDisposable
     {
-        public TreasuryDirectService TreasuryDirectService;
+        public TreasuryDirectRepository TreasuryDirectRepository;
         public AutoMocker Mocker;
 
-        public TreasuryDirectService CreateTreasuryDirectService()
+        public TreasuryDirectRepository CreateTreasuryDirectRepository()
         {
             Mocker = new AutoMocker();
-            TreasuryDirectService = Mocker.CreateInstance<TreasuryDirectService>();
-            return TreasuryDirectService;
+            TreasuryDirectRepository = Mocker.CreateInstance<TreasuryDirectRepository>();
+            return TreasuryDirectRepository;
         }
 
         public ApiResponse<TreasuryDirectMockModel> GenerateApiResponseTreasuryDirectMockModelOk()
@@ -32,7 +32,7 @@ namespace Easy.Reports.Application.Tests.Services
             {
                 GenerateTreasuryDirectMock()
             };
-            
+
             treasuryDirectMockModel.TreasuryDirectList = treasuryDirectMockList;
             return new ApiResponse<TreasuryDirectMockModel>(httpResponseMessage, treasuryDirectMockModel);
         }
@@ -49,8 +49,8 @@ namespace Easy.Reports.Application.Tests.Services
             {
                 InvestedValue = 799.4720m,
                 TotalValue = 829.68m,
-                DueDate = new DateTime(2025,03,01),
-                PurchaseDate = new DateTime(2015,03,01),
+                DueDate = new DateTime(2025, 03, 01),
+                PurchaseDate = new DateTime(2015, 03, 01),
                 Iof = 0,
                 Index = "SELIC",
                 InvestmentType = "TD",

@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Easy.Reports.Application\Easy.Reports.Application.csproj" />
-    <ProjectReference Include="..\Easy.Reports.Infra.ExternalServices\Easy.Reports.Infra.ExternalServices.csproj" />
+    <ProjectReference Include="..\Easy.Reports.Data\Easy.Reports.Data.csproj" />
   </ItemGroup>
 
 

@@ -1,4 +1,4 @@
-﻿using Easy.Reports.Domain.Services;
+﻿using Easy.Reports.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 using System.Linq;
@@ -11,11 +11,11 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
     {
         private const string cashKey = "GetConsolidatedReport";
         private readonly IMemoryCache _memoryCache;
-        private readonly IConsolidatedInvestmentService _consolidatedInvestmentService;
-        public GetHandler(IMemoryCache memoryCach, IConsolidatedInvestmentService consolidatedInvestmentService)
+        private readonly IConsolidatedInvestmentRepository _consolidatedInvestmentRepository;
+        public GetHandler(IMemoryCache memoryCach, IConsolidatedInvestmentRepository consolidatedInvestmentRepository)
         {
             _memoryCache = memoryCach;
-            _consolidatedInvestmentService = consolidatedInvestmentService;
+            _consolidatedInvestmentRepository = consolidatedInvestmentRepository;
         }
         public async Task<GetResult> Handle(GetQuery request, CancellationToken cancellationToken)
         {
@@ -26,7 +26,7 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
                     AbsoluteExpiration = request.RescueDate.Date.AddDays(1)
                 };
 
-                var investments = await _consolidatedInvestmentService.GetAllCalculatedInvestmentsAsync(request.RescueDate);
+                var investments = await _consolidatedInvestmentRepository.GetAllCalculatedInvestmentsAsync(request.RescueDate);
 
                 getResult = new GetResult
                 {
@@ -39,27 +39,5 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 
             return getResult;
         }
-        //public async Task<GetResult> Handle(GetQuery request, CancellationToken cancellationToken)
-        //{
-        //    if (!_memoryCache.TryGetValue(cashKey, out GetResult getResult))
-        //    {
-        //        var memoryCacheEntryOptions = new MemoryCacheEntryOptions()
-        //        {
-        //            AbsoluteExpiration = request.RescueDate.Date.AddDays(1)
-        //        };
-
-        //        var investments = await _consolidatedInvestmentService.GetAllCalculatedInvestmentsAsync(request.RescueDate);
-
-        //        getResult = new GetResult
-        //        {
-        //            TotalValue = investments.Sum(i => i.RescueValue),
-        //            Investments = investments
-        //        };
-
-        //        _memoryCache.Set(cashKey, getResult, memoryCacheEntryOptions);
-        //    }
-
-        //    return getResult;
-        //}
     }
 }

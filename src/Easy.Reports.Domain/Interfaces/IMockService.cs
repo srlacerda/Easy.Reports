@@ -1,7 +1,8 @@
 ﻿using Easy.Reports.Domain.Models;
 using Refit;
 using System.Threading.Tasks;
-namespace Easy.Reports.Infra.ExternalServices.Client.Mock
+
+namespace Easy.Reports.Domain.Interfaces
 {
     public interface IMockService
     {

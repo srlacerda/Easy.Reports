@@ -14,7 +14,7 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
             var getQuery = new GetQuery(DateTime.Now);
             var getResult = await _mediator.Send(getQuery, CancellationToken.None);
             var consolidatedReportResponse = (ConsolidatedReportResponse)getResult;
-            return await Task.FromResult(consolidatedReportResponse);
+            return consolidatedReportResponse;
         }
     }
 }

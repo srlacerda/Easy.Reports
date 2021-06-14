@@ -1,27 +1,26 @@
 ﻿using Easy.Reports.Domain.Entities;
-using Easy.Reports.Domain.Services;
-using Easy.Reports.Infra.ExternalServices.Client.Mock;
+using Easy.Reports.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Reports.Application.Services
+namespace Easy.Reports.Data.Repositories
 {
-    public class InvestmentFundService : IInvestmentFundService
+    public class InvestmentFundRepository : IInvestmentFundRepository
     {
         private readonly IMockService _mockService;
-        public InvestmentFundService(IMockService mockService)
+        public InvestmentFundRepository(IMockService mockService)
         {
             _mockService = mockService;
         }
         public async Task<IEnumerable<InvestmentFund>> GetCalculatedInvestmentFundAsync(DateTime rescueDate)
         {
-            var investmentFundMockModel = await _mockService.GetInvestmentFundAsync();
+            var apiResponseInvestmentFundMockModel = await _mockService.GetInvestmentFundAsync();
             var investmentFundList = new List<InvestmentFund>();
 
-            if (investmentFundMockModel.IsSuccessStatusCode)
+            if (apiResponseInvestmentFundMockModel.IsSuccessStatusCode)
             {
-                foreach (var investmentFundMock in investmentFundMockModel.Content.InvestmentFundList)
+                foreach (var investmentFundMock in apiResponseInvestmentFundMockModel.Content.InvestmentFundList)
                 {
                     var investmentFund = (InvestmentFund)investmentFundMock;
                     investmentFund.PerformCalculationsRescue(rescueDate);

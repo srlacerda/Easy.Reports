@@ -1,7 +1,6 @@
-﻿using Easy.Reports.Application.Services;
-using Easy.Reports.Application.UseCases.ConsolidatedReport;
-using Easy.Reports.Domain.Services;
-using Easy.Reports.Infra.ExternalServices.Client.Mock;
+﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
+using Easy.Reports.Data.Repositories;
+using Easy.Reports.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +16,7 @@ namespace Easy.Reports.Api.Setup
             services.RegisterMediatr();
             services.RegisterCaching();
             services.RegisterExternalServices(configuration);
-            services.RegisterInternalServices();
+            services.RegisterRepositories();
         }
 
         private static void RegisterMediatr(this IServiceCollection services)
@@ -35,12 +34,12 @@ namespace Easy.Reports.Api.Setup
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(configuration.GetSection("ExternalMockService:BaseUrl").Value));
         }
 
-        private static void RegisterInternalServices(this IServiceCollection services)
+        private static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IConsolidatedInvestmentService, ConsolidatedInvestmentService>();
-            services.AddScoped<ITreasuryDirectService, TreasuryDirectService>();
-            services.AddScoped<IFixedIncomeService, FixedIncomeService>();
-            services.AddScoped<IInvestmentFundService, InvestmentFundService>();
+            services.AddScoped<IConsolidatedInvestmentRepository, ConsolidatedInvestmentRepository>();
+            services.AddScoped<ITreasuryDirectRepository, TreasuryDirectRepository>();
+            services.AddScoped<IFixedIncomeRepository, FixedIncomeRepository>();
+            services.AddScoped<IInvestmentFundRepository, InvestmentFundRepository>();
         }
     }
 }

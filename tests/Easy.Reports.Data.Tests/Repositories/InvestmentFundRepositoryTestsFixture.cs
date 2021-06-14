@@ -1,4 +1,4 @@
-﻿using Easy.Reports.Application.Services;
+﻿using Easy.Reports.Data.Repositories;
 using Easy.Reports.Domain.Models;
 using Moq.AutoMock;
 using Refit;
@@ -8,25 +8,25 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 
-namespace Easy.Reports.Application.Tests.Services
+namespace Easy.Reports.Data.Tests.Repositories
 {
-    [CollectionDefinition(nameof(InvestmentFundServiceCollection))]
-    public class InvestmentFundServiceCollection : ICollectionFixture<InvestmentFundServiceTestsFixture> { }
-    public class InvestmentFundServiceTestsFixture : IDisposable
+    [CollectionDefinition(nameof(InvestmentFundRepositoryCollection))]
+    public class InvestmentFundRepositoryCollection : ICollectionFixture<InvestmentFundRepositoryTestsFixture> { }
+    public class InvestmentFundRepositoryTestsFixture : IDisposable
     {
-        public InvestmentFundService InvestmentFundService;
+        public InvestmentFundRepository InvestmentFundRepository;
         public AutoMocker Mocker;
 
-        public InvestmentFundService CreateInvestmentFundService()
+        public InvestmentFundRepository CreateInvestmentFundRepository()
         {
             Mocker = new AutoMocker();
-            InvestmentFundService = Mocker.CreateInstance<InvestmentFundService>();
-            return InvestmentFundService;
+            InvestmentFundRepository = Mocker.CreateInstance<InvestmentFundRepository>();
+            return InvestmentFundRepository;
         }
 
         public ApiResponse<InvestmentFundMockModel> GenerateApiResponseInvestmentFundMockModelOk()
         {
-            var httpResponseMessage = new HttpResponseMessage {StatusCode = HttpStatusCode.OK};
+            var httpResponseMessage = new HttpResponseMessage { StatusCode = HttpStatusCode.OK };
             var investmentFundMockModel = new InvestmentFundMockModel();
             var investmentFundMockList = new List<InvestmentFundMock>
             {
@@ -39,7 +39,7 @@ namespace Easy.Reports.Application.Tests.Services
 
         public ApiResponse<InvestmentFundMockModel> GenerateApiResponseInvestmentFundMockModelNotOk()
         {
-            var httpResponseMessage = new HttpResponseMessage {StatusCode = HttpStatusCode.InternalServerError};
+            var httpResponseMessage = new HttpResponseMessage { StatusCode = HttpStatusCode.InternalServerError };
             return new ApiResponse<InvestmentFundMockModel>(httpResponseMessage, null);
         }
 

@@ -1,4 +1,4 @@
-﻿using Easy.Reports.Application.Services;
+﻿using Easy.Reports.Data.Repositories;
 using Easy.Reports.Domain.Models;
 using Moq.AutoMock;
 using Refit;
@@ -8,20 +8,20 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 
-namespace Easy.Reports.Application.Tests.Services
+namespace Easy.Reports.Data.Tests.Repositories
 {
-    [CollectionDefinition(nameof(FixedIncomeServiceCollection))]
-    public class FixedIncomeServiceCollection : ICollectionFixture<FixedIncomeServiceTestsFixture> { }
-    public class FixedIncomeServiceTestsFixture : IDisposable
+    [CollectionDefinition(nameof(FixedIncomeRepositoryCollection))]
+    public class FixedIncomeRepositoryCollection : ICollectionFixture<FixedIncomeRepositoryTestsFixture> { }
+    public class FixedIncomeRepositoryTestsFixture : IDisposable
     {
-        public FixedIncomeService FixedIncomeService;
+        public FixedIncomeRepository FixedIncomeRepository;
         public AutoMocker Mocker;
 
-        public FixedIncomeService CreateFixedIncomeService()
+        public FixedIncomeRepository CreateFixedIncomeRepository()
         {
             Mocker = new AutoMocker();
-            FixedIncomeService = Mocker.CreateInstance<FixedIncomeService>();
-            return FixedIncomeService;
+            FixedIncomeRepository = Mocker.CreateInstance<FixedIncomeRepository>();
+            return FixedIncomeRepository;
         }
 
         public ApiResponse<FixedIncomeMockModel> GenerateApiResponseFixedIncomeMockModelOk()

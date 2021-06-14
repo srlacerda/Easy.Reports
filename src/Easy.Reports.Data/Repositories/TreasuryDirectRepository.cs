@@ -1,36 +1,34 @@
 ﻿using Easy.Reports.Domain.Entities;
-using Easy.Reports.Domain.Services;
-using Easy.Reports.Infra.ExternalServices.Client.Mock;
+using Easy.Reports.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Reports.Application.Services
+namespace Easy.Reports.Data.Repositories
 {
-    public class TreasuryDirectService : ITreasuryDirectService
+    public class TreasuryDirectRepository  : ITreasuryDirectRepository
     {
         private readonly IMockService _mockService;
-        public TreasuryDirectService(IMockService mockService)
+        public TreasuryDirectRepository(IMockService mockService)
         {
             _mockService = mockService;
         }
         public async Task<IEnumerable<TreasuryDirect>> GetCalculatedTreasuryDirectAsync(DateTime rescueDate)
         {
-            var treasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
+            var apiResponseTreasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
             var treasuryDirectList = new List<TreasuryDirect>();
 
-            if (treasuryDirectMockModel.IsSuccessStatusCode)
+            if (apiResponseTreasuryDirectMockModel.IsSuccessStatusCode)
             {
-                foreach (var treasuryDirectMock in treasuryDirectMockModel.Content.TreasuryDirectList)
+                foreach (var treasuryDirectMock in apiResponseTreasuryDirectMockModel.Content.TreasuryDirectList)
                 {
                     var treasuryDirect = (TreasuryDirect)treasuryDirectMock;
                     treasuryDirect.PerformCalculationsRescue(rescueDate);
                     treasuryDirectList.Add(treasuryDirect);
                 }
             }
-            
+
             return treasuryDirectList;
-           
         }
     }
 }

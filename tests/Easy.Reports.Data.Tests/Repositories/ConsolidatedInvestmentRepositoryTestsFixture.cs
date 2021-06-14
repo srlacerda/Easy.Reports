@@ -1,24 +1,24 @@
-﻿using Easy.Reports.Application.Services;
+﻿using Easy.Reports.Data.Repositories;
 using Easy.Reports.Domain.Entities;
 using Moq.AutoMock;
 using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Easy.Reports.Application.Tests.Services
+namespace Easy.Reports.Data.Tests.Repositories
 {
-    [CollectionDefinition(nameof(ConsolidatedInvestmentServiceCollection))]
-    public class ConsolidatedInvestmentServiceCollection : ICollectionFixture<ConsolidatedInvestmentServiceTestsFixture> { }
-    public class ConsolidatedInvestmentServiceTestsFixture : IDisposable
+    [CollectionDefinition(nameof(ConsolidatedInvestmentRepositoryCollection))]
+    public class ConsolidatedInvestmentRepositoryCollection : ICollectionFixture<ConsolidatedInvestmentRepositoryTestsFixture> { }
+    public class ConsolidatedInvestmentRepositoryTestsFixture : IDisposable
     {
-        public ConsolidatedInvestmentService ConsolidatedInvestmentService;
+        public ConsolidatedInvestmentRepository ConsolidatedInvestmentRepository;
         public AutoMocker Mocker;
 
-        public ConsolidatedInvestmentService CreateConsolidatedInvestmentService()
+        public ConsolidatedInvestmentRepository CreateConsolidatedInvestmentRepository()
         {
             Mocker = new AutoMocker();
-            ConsolidatedInvestmentService = Mocker.CreateInstance<ConsolidatedInvestmentService>();
-            return ConsolidatedInvestmentService;
+            ConsolidatedInvestmentRepository = Mocker.CreateInstance<ConsolidatedInvestmentRepository>();
+            return ConsolidatedInvestmentRepository;
         }
 
         public IEnumerable<TreasuryDirect> GenerateTresuryDirectListOk()
@@ -63,7 +63,7 @@ namespace Easy.Reports.Application.Tests.Services
         public IEnumerable<InvestmentFund> GenerateInvestmentFundListOk()
         {
             return new List<InvestmentFund>
-            { 
+            {
                 new InvestmentFund
                 (
                     investedValue: 1000.0m,

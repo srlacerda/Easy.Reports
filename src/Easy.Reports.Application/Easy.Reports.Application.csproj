@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Easy.Reports.Domain\Easy.Reports.Domain.csproj" />
-    <ProjectReference Include="..\Easy.Reports.Infra.ExternalServices\Easy.Reports.Infra.ExternalServices.csproj" />
   </ItemGroup>
 
 </Project>
