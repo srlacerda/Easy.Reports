@@ -1,8 +1,6 @@
 ﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
 using Easy.Reports.Domain.Interfaces;
-using Microsoft.Extensions.Caching.Memory;
 using Moq;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,24 +30,6 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             var investments = _getHandlerTestsFixture.GenerateInvestmentsOk();
             var investmentsFirst = investments.FirstOrDefault();
 
-            #region mocking IMemoryCache
-            string keyPayload = null;
-            _getHandlerTestsFixture.Mocker.GetMock<IMemoryCache>()
-                .Setup(mc => mc.CreateEntry(It.IsAny<object>()))
-                .Callback((object k) => keyPayload = (string)k)
-                .Returns(_getHandlerTestsFixture.Mocker.GetMock<ICacheEntry>().Object);
-
-            object valuePayload = null;
-            _getHandlerTestsFixture.Mocker.GetMock<ICacheEntry>()
-               .SetupSet(mce => mce.Value = It.IsAny<object>())
-                .Callback<object>(v => valuePayload = v);
-
-            TimeSpan? expirationPayload = null;
-            _getHandlerTestsFixture.Mocker.GetMock<ICacheEntry>()
-                .SetupSet(mce => mce.AbsoluteExpirationRelativeToNow = It.IsAny<TimeSpan?>())
-                .Callback<TimeSpan?>(dto => expirationPayload = dto);
-            #endregion
-
             _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>()
                 .Setup(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate))
                 .ReturnsAsync(investments);
@@ -73,24 +53,6 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
         {
             // Arrange
             var investments = _getHandlerTestsFixture.GenerateInvestmentsNotOk();
-
-            #region mocking IMemoryCache
-            string keyPayload = null;
-            _getHandlerTestsFixture.Mocker.GetMock<IMemoryCache>()
-                .Setup(mc => mc.CreateEntry(It.IsAny<object>()))
-                .Callback((object k) => keyPayload = (string)k)
-                .Returns(_getHandlerTestsFixture.Mocker.GetMock<ICacheEntry>().Object);
-
-            object valuePayload = null;
-            _getHandlerTestsFixture.Mocker.GetMock<ICacheEntry>()
-               .SetupSet(mce => mce.Value = It.IsAny<object>())
-                .Callback<object>(v => valuePayload = v);
-
-            TimeSpan? expirationPayload = null;
-            _getHandlerTestsFixture.Mocker.GetMock<ICacheEntry>()
-                .SetupSet(mce => mce.AbsoluteExpirationRelativeToNow = It.IsAny<TimeSpan?>())
-                .Callback<TimeSpan?>(dto => expirationPayload = dto);
-            #endregion
 
             _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>()
                 .Setup(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate))

@@ -1,6 +1,7 @@
 ﻿using Easy.Reports.Data.Repositories;
 using Easy.Reports.Domain.Entities;
 using Easy.Reports.Domain.Interfaces;
+using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using System;
 using System.Linq;
@@ -35,6 +36,24 @@ namespace Easy.Reports.Data.Tests.Repositories
 
             var investmentFundList = _consolidatedInvestmentRepositoryTestsFixture.GenerateInvestmentFundListOk();
             var investmentFundFirst = investmentFundList.FirstOrDefault();
+
+            #region mocking IMemoryCache
+            string keyPayload = null;
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IMemoryCache>()
+                .Setup(mc => mc.CreateEntry(It.IsAny<object>()))
+                .Callback((object k) => keyPayload = (string)k)
+                .Returns(_consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ICacheEntry>().Object);
+
+            object valuePayload = null;
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ICacheEntry>()
+               .SetupSet(mce => mce.Value = It.IsAny<object>())
+                .Callback<object>(v => valuePayload = v);
+
+            TimeSpan? expirationPayload = null;
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ICacheEntry>()
+                .SetupSet(mce => mce.AbsoluteExpirationRelativeToNow = It.IsAny<TimeSpan?>())
+                .Callback<TimeSpan?>(dto => expirationPayload = dto);
+            #endregion
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>()
                 .Setup(td => td.GetCalculatedTreasuryDirectAsync(_rescueDate))
@@ -85,6 +104,24 @@ namespace Easy.Reports.Data.Tests.Repositories
             var treasuryDirectList = _consolidatedInvestmentRepositoryTestsFixture.GenerateTresuryDirectListNotOk();
             var fixedIncomeList = _consolidatedInvestmentRepositoryTestsFixture.GenerateFixedIncomeListNotOk();
             var investmentFundList = _consolidatedInvestmentRepositoryTestsFixture.GenerateInvestmentFundListNotOk();
+
+            #region mocking IMemoryCache
+            string keyPayload = null;
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IMemoryCache>()
+                .Setup(mc => mc.CreateEntry(It.IsAny<object>()))
+                .Callback((object k) => keyPayload = (string)k)
+                .Returns(_consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ICacheEntry>().Object);
+
+            object valuePayload = null;
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ICacheEntry>()
+               .SetupSet(mce => mce.Value = It.IsAny<object>())
+                .Callback<object>(v => valuePayload = v);
+
+            TimeSpan? expirationPayload = null;
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ICacheEntry>()
+                .SetupSet(mce => mce.AbsoluteExpirationRelativeToNow = It.IsAny<TimeSpan?>())
+                .Callback<TimeSpan?>(dto => expirationPayload = dto);
+            #endregion
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>()
                 .Setup(td => td.GetCalculatedTreasuryDirectAsync(_rescueDate))
