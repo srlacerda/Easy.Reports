@@ -30,10 +30,6 @@ If you liked the project, please give a star ;)
 - **NOT** intended to be a definitive solution
 - Lacked to implement the use of a library to record the logs somewhere.
 
-
-## Why Equinox?
-The Equinox is an astronomical event in which the plane of Earth's equator passes through the center of the Sun, which occurs twice each year, around 20 March and 23 September. [Wikipedia](https://en.wikipedia.org/wiki/Equinox)
-
 Equinox is also a series of publications (subtitle: "The Review of Scientific Illuminism") in book form that serves as the official organ of the A∴A∴, a magical order founded by Aleister Crowley :) [Wikipedia](https://en.wikipedia.org/wiki/The_Equinox)
 
 ## We are Online:
