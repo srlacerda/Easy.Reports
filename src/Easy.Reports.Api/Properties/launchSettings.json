@@ -14,15 +14,6 @@
       "launchBrowser": true,
       "launchUrl": "api/v1/ConsolidatedReport",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:5000"
-    },
-    "Easy.Reports.Api - Production": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "api/v1/ConsolidatedReport",
-      "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       },
       "applicationUrl": "http://localhost:5000"

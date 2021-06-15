@@ -30,9 +30,9 @@ If you liked the project, please give a star ;)
 - **NOT** intended to be a definitive solution
 
 ## We are Online:
-See the project running on <a href="http://easyreportsapi-prod.us-east-1.elasticbeanstalk.com/api/v1/ConsolidatedReport" target="_blank">API - v1 - ConsolidatedReport</a>
+See the project running on <a href="http://easyreports-dev.us-east-1.elasticbeanstalk.com/api/v1/ConsolidatedReport" target="_blank">API - v1 - ConsolidatedReport</a>
 
-See the project running on <a href="http://easyreportsapi-prod.us-east-1.elasticbeanstalk.com/swagger/index.html" target="_blank">Swagger</a>
+See the project running on <a href="http://easyreports-dev.us-east-1.elasticbeanstalk.com/swagger/index.html" target="_blank">Swagger</a>
 
 
 ## About:
