@@ -28,7 +28,6 @@ If you liked the project, please give a star ;)
 
 ## Disclaimer:
 - **NOT** intended to be a definitive solution
-- Lacked to implement the use of a library to record the logs somewhere.
 
 ## We are Online:
 See the project running on <a href="http://easyreportsapi-prod.us-east-1.elasticbeanstalk.com/api/v1/ConsolidatedReport" target="_blank">API - v1 - ConsolidatedReport</a>
