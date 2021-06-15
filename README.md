@@ -22,7 +22,6 @@ If you liked the project, please give a star ;)
 ## Architecture:
 
 - Full architecture with responsibility separation concerns, SOLID and Clean Code
-- Domain Driven Design (Layers and Domain Model Pattern)
 - CQRS
 - Repository
 
