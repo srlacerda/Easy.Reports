@@ -30,8 +30,6 @@ If you liked the project, please give a star ;)
 - **NOT** intended to be a definitive solution
 - Lacked to implement the use of a library to record the logs somewhere.
 
-Equinox is also a series of publications (subtitle: "The Review of Scientific Illuminism") in book form that serves as the official organ of the A∴A∴, a magical order founded by Aleister Crowley :) [Wikipedia](https://en.wikipedia.org/wiki/The_Equinox)
-
 ## We are Online:
 See the project running on <a href="http://easyreportsapi-prod.us-east-1.elasticbeanstalk.com/api/v1/ConsolidatedReport" target="_blank">API - v1 - ConsolidatedReport</a>
 
