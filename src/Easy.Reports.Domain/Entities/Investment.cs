@@ -5,10 +5,10 @@ namespace Easy.Reports.Domain.Entities
 {
     public abstract class Investment
     {
-        private const decimal _lessThanHalfTimeInCustody = 0.30m; //_menosDaMetadeDoTempoEmCustodia
-        private const decimal _moreThanHalfTimeInCustody = 0.15m; //_maisDaMetadeDoTempoEmCustodia
-        private const decimal _untilThreeMonthsToDueDate = 0.06m; //_ateTresMesesParaVencer
-        private const decimal _moreOrEqualToDueDate = 0m; //_maiorIgualVencimento
+        private const decimal _lessThanHalfTimeInCustody = 0.30m;
+        private const decimal _moreThanHalfTimeInCustody = 0.15m;
+        private const decimal _untilThreeMonthsToDueDate = 0.06m;
+        private const decimal _moreOrEqualToDueDate = 0m;
 
         [JsonProperty("valorInvestido")]
         public decimal InvestedValue { get; protected set; }
@@ -47,11 +47,11 @@ namespace Easy.Reports.Domain.Entities
 
         private void CalculateRescueValue(DateTime dataResgate)
         {
-            decimal lossPercentage; //perdaPecentual
+            decimal lossPercentage;
 
-            var investmentPeriod = DueDate.Subtract(PurchaseDate); //periodoInvestimento
-            var halfInvestmentPeriod = investmentPeriod.Days / 2; //metadePeriodoInvestimento
-            var untilTodayPeriod = dataResgate.Subtract(PurchaseDate); //periodoPassadoAteHoje
+            var investmentPeriod = DueDate.Subtract(PurchaseDate);
+            var halfInvestmentPeriod = investmentPeriod.Days / 2;
+            var untilTodayPeriod = dataResgate.Subtract(PurchaseDate);
 
             if (dataResgate >= DueDate)
             {
