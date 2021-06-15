@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Easy.Reports.Data\Easy.Reports.Data.csproj" />
+    <ProjectReference Include="..\..\src\Easy.Reports.Data\Easy.Reports.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\src\Easy.Reports.Infra.Data\Easy.Reports.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

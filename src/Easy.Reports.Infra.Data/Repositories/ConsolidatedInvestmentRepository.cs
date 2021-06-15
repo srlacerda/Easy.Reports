@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Easy.Reports.Data.Repositories
+namespace Easy.Reports.Infra.Data.Repositories
 {
     public class ConsolidatedInvestmentRepository : IConsolidatedInvestmentRepository
     {

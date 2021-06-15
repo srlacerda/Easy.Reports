@@ -1,14 +1,14 @@
 ﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
-using Easy.Reports.Data.Repositories;
 using Easy.Reports.Domain.Interfaces;
-using Easy.Reports.Log;
+using Easy.Reports.Infra.CrossCutting.Log;
+using Easy.Reports.Infra.Data.Repositories;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using System;
 
-namespace Easy.Reports.Api.Setup
+namespace Easy.Reports.Infra.CrossCutting.IoC
 {
     public static class DependencyInjection
     {

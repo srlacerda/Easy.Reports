@@ -1,4 +1,4 @@
-﻿using Easy.Reports.Data.Repositories;
+﻿using Easy.Reports.Infra.Data.Repositories;
 using Easy.Reports.Domain.Interfaces;
 using Moq;
 using System;

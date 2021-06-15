@@ -7,14 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Easy.Reports.Application\Easy.Reports.Application.csproj" />
-    <ProjectReference Include="..\Easy.Reports.Data\Easy.Reports.Data.csproj" />
-    <ProjectReference Include="..\Easy.Reports.Log\Easy.Reports.Log.csproj" />
+    <ProjectReference Include="..\Easy.Reports.Infra.CrossCutting.IoC\Easy.Reports.Infra.CrossCutting.IoC.csproj" />
   </ItemGroup>
 
 

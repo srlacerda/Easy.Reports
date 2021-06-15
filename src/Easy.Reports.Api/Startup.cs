@@ -1,4 +1,4 @@
-using Easy.Reports.Api.Setup;
+using Easy.Reports.Infra.CrossCutting.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Reports.Data.Repositories
+namespace Easy.Reports.Infra.Data.Repositories
 {
     public class FixedIncomeRepository : IFixedIncomeRepository
     {
