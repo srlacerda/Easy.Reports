@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Easy.Reports.Data\Easy.Reports.Infra.Data.csproj" />
     <ProjectReference Include="..\..\src\Easy.Reports.Infra.Data\Easy.Reports.Infra.Data.csproj" />
   </ItemGroup>
 
