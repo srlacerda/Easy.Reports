@@ -26,12 +26,12 @@ namespace Easy.Reports.Data.Tests.Repositories
         public async Task InvestmentFundRepository_CalculatedInvestmentFundAsync_MustGetOk()
         {
             // Arrange
-            var investmentFundMockModel = _investmentFundRepositoryTestsFixture.GenerateApiResponseInvestmentFundMockModelOk();
-            var investmentFundMockModelListFirst = investmentFundMockModel.Content.InvestmentFundList.ToList().FirstOrDefault();
+            var apiResponseinvestmentFundMockModel = _investmentFundRepositoryTestsFixture.GenerateApiResponseInvestmentFundMockModelOk();
+            var investmentFundMockModelListFirst = apiResponseinvestmentFundMockModel.Content.InvestmentFundList.ToList().FirstOrDefault();
 
             _investmentFundRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetInvestmentFundAsync())
-                .ReturnsAsync(investmentFundMockModel);
+                .ReturnsAsync(apiResponseinvestmentFundMockModel);
 
             // Act
             var result = await _investmentFundRepository.GetCalculatedInvestmentFundAsync(_rescueDate);
@@ -51,11 +51,11 @@ namespace Easy.Reports.Data.Tests.Repositories
         public async Task InvestmentFundRepository_CalculatedInvestmentFundAsync_MustGetNotOK()
         {
             // Arrange
-            var investmentFundMockModel = _investmentFundRepositoryTestsFixture.GenerateApiResponseInvestmentFundMockModelNotOk();
+            var apiResponseinvestmentFundMockModel = _investmentFundRepositoryTestsFixture.GenerateApiResponseInvestmentFundMockModelNotOk();
 
             _investmentFundRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetInvestmentFundAsync())
-                .ReturnsAsync(investmentFundMockModel);
+                .ReturnsAsync(apiResponseinvestmentFundMockModel);
 
             // Act
             var result = await _investmentFundRepository.GetCalculatedInvestmentFundAsync(_rescueDate);

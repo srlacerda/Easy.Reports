@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Easy.Reports.Application\Easy.Reports.Application.csproj" />
     <ProjectReference Include="..\Easy.Reports.Data\Easy.Reports.Data.csproj" />
+    <ProjectReference Include="..\Easy.Reports.Log\Easy.Reports.Log.csproj" />
   </ItemGroup>
 
 

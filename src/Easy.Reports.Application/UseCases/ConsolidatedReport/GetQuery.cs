@@ -7,7 +7,6 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
     {
         public DateTime RescueDate { get; set; }
 
-        protected GetQuery(){}
         public GetQuery(DateTime rescueDate)
         {
            RescueDate = rescueDate;

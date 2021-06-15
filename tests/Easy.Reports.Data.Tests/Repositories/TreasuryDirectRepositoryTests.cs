@@ -26,12 +26,12 @@ namespace Easy.Reports.Data.Tests.Repositories
         public async Task TreasuryDirectRepository_CalculatedTreasuryDirectAsync_MustGetOk()
         {
             // Arrange
-            var treasuryDirectMockModel = _treasuryDirectRepositoryTestsFixture.GenerateApiResponseTreasuryDirectMockModelOk();
-            var treasuryDirectMockModelListFirst = treasuryDirectMockModel.Content.TreasuryDirectList.ToList().FirstOrDefault();
+            var apiResponseTreasuryDirectMockModel = _treasuryDirectRepositoryTestsFixture.GenerateApiResponseTreasuryDirectMockModelOk();
+            var treasuryDirectMockModelListFirst = apiResponseTreasuryDirectMockModel.Content.TreasuryDirectList.ToList().FirstOrDefault();
 
             _treasuryDirectRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetTreasuryDirectAsync())
-                .ReturnsAsync(treasuryDirectMockModel);
+                .ReturnsAsync(apiResponseTreasuryDirectMockModel);
 
             // Act
             var result = await _treasuryDirectRepository.GetCalculatedTreasuryDirectAsync(_rescueDate);
@@ -51,11 +51,11 @@ namespace Easy.Reports.Data.Tests.Repositories
         public async Task TreasuryDirectRepository_CalculatedTreasuryDirectAsync_MustGetNotOK()
         {
             // Arrange
-            var treasuryDirectMockModel = _treasuryDirectRepositoryTestsFixture.GenerateApiResponseTreasuryDirectMockModelNotOk();
+            var apiResponseTreasuryDirectMockModel = _treasuryDirectRepositoryTestsFixture.GenerateApiResponseTreasuryDirectMockModelNotOk();
 
             _treasuryDirectRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetTreasuryDirectAsync())
-                .ReturnsAsync(treasuryDirectMockModel);
+                .ReturnsAsync(apiResponseTreasuryDirectMockModel);
 
             // Act
             var result = await _treasuryDirectRepository.GetCalculatedTreasuryDirectAsync(_rescueDate);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Easy.Reports.Domain.Entities
 {
@@ -9,29 +10,42 @@ namespace Easy.Reports.Domain.Entities
         private const decimal _untilThreeMonthsToDueDate = 0.06m; //_ateTresMesesParaVencer
         private const decimal _moreOrEqualToDueDate = 0m; //_maiorIgualVencimento
 
-        public decimal InvestedValue { get; protected set; } //ValorInvestido
-        public decimal TotalValue { get; protected set; } //ValorTotal
-        public DateTime DueDate { get; protected set; } //Vencimento
-        public DateTime PurchaseDate { get; protected set; } //DataDeCompra
-        public string Name { get; protected set; } //Nome
-        public decimal IrTaxValue { get; protected set; } //Ir
-        public decimal RescueValue { get; protected set; } //ValorResgate
+        [JsonProperty("valorInvestido")]
+        public decimal InvestedValue { get; protected set; }
+
+        [JsonProperty("valorTotal")]
+        public decimal TotalValue { get; protected set; }
+
+        [JsonProperty("vencimento")]
+        public DateTime DueDate { get; protected set; }
+
+        [JsonProperty("dataCompra")]
+        public DateTime PurchaseDate { get; protected set; }
+
+        [JsonProperty("nome")]
+        public string Name { get; protected set; }
+
+        [JsonProperty("ir")]
+        public decimal IrTaxValue { get; protected set; }
+
+        [JsonProperty("valorResgate")]
+        public decimal RescueValue { get; protected set; }
 
        
-        public abstract void PerformCalculationsRescue(DateTime rescueDate); //EfetuarCalculosResgate (dataResgate)
-        protected void PerformCalculations(DateTime rescueDate, decimal irTaxPercentage) ////EfetuarCalculos (dataResgate, irPercentual)
+        public abstract void PerformCalculationsRescue(DateTime rescueDate);
+        protected void PerformCalculations(DateTime rescueDate, decimal irTaxPercentage)
         {
             CalculateRescueValue(rescueDate);
             CalculateIrTax(irTaxPercentage);
         }
 
-        private void CalculateIrTax(decimal irTaxPercentage) //CalcularIr (irPercentual)
+        private void CalculateIrTax(decimal irTaxPercentage)
         {
             decimal profitabilityValue = TotalValue - InvestedValue;
             IrTaxValue = irTaxPercentage * profitabilityValue;
         }
 
-        private void CalculateRescueValue(DateTime dataResgate) //CalcularValorResgate (dataResgate)
+        private void CalculateRescueValue(DateTime dataResgate)
         {
             decimal lossPercentage; //perdaPecentual
 

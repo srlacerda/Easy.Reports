@@ -1,6 +1,7 @@
 ﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
 using Easy.Reports.Data.Repositories;
 using Easy.Reports.Domain.Interfaces;
+using Easy.Reports.Log;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace Easy.Reports.Api.Setup
             services.RegisterCaching();
             services.RegisterExternalServices(configuration);
             services.RegisterRepositories();
+            services.RegisterLogger();
         }
 
         private static void RegisterMediatr(this IServiceCollection services)
@@ -36,10 +38,15 @@ namespace Easy.Reports.Api.Setup
 
         private static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IConsolidatedInvestmentRepository, ConsolidatedInvestmentRepository>();
-            services.AddScoped<ITreasuryDirectRepository, TreasuryDirectRepository>();
-            services.AddScoped<IFixedIncomeRepository, FixedIncomeRepository>();
-            services.AddScoped<IInvestmentFundRepository, InvestmentFundRepository>();
+            services.AddTransient<IConsolidatedInvestmentRepository, ConsolidatedInvestmentRepository>();
+            services.AddTransient<ITreasuryDirectRepository, TreasuryDirectRepository>();
+            services.AddTransient<IFixedIncomeRepository, FixedIncomeRepository>();
+            services.AddTransient<IInvestmentFundRepository, InvestmentFundRepository>();
+        }
+
+        private static void RegisterLogger(this IServiceCollection services)
+        {
+            services.AddScoped<ILogger, Logger>();
         }
     }
 }

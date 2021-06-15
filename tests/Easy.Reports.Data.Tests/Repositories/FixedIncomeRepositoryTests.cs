@@ -26,12 +26,12 @@ namespace Easy.Reports.Data.Tests.Repositories
         public async Task FixedIncomeRepository_CalculatedFixedIncomeAsync_MustGetOk()
         {
             // Arrange
-            var fixedIncomeMockModel = _fixedIncomeRepositoryTestsFixture.GenerateApiResponseFixedIncomeMockModelOk();
-            var fixedIncomeMockModelListFirst = fixedIncomeMockModel.Content.FixedIncomeList.ToList().FirstOrDefault();
+            var apiResponsefixedIncomeMockModel = _fixedIncomeRepositoryTestsFixture.GenerateApiResponseFixedIncomeMockModelOk();
+            var fixedIncomeMockModelListFirst = apiResponsefixedIncomeMockModel.Content.FixedIncomeList.ToList().FirstOrDefault();
 
             _fixedIncomeRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetFixedIncomeAsync())
-                .ReturnsAsync(fixedIncomeMockModel);
+                .ReturnsAsync(apiResponsefixedIncomeMockModel);
 
             // Act
             var result = await _fixedIncomeRepository.GetCalculatedFixedIncomeAsync(_rescueDate);
@@ -51,11 +51,11 @@ namespace Easy.Reports.Data.Tests.Repositories
         public async Task FixedIncomeRepository_CalculatedFixedIncomeAsync_MustGetNotOK()
         {
             // Arrange
-            var fixedIncomeMockModel = _fixedIncomeRepositoryTestsFixture.GenerateApiResponseFixedIncomeMockModelNotOk();
+            var apiResponsefixedIncomeMockModel = _fixedIncomeRepositoryTestsFixture.GenerateApiResponseFixedIncomeMockModelNotOk();
 
             _fixedIncomeRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetFixedIncomeAsync())
-                .ReturnsAsync(fixedIncomeMockModel);
+                .ReturnsAsync(apiResponsefixedIncomeMockModel);
 
             // Act
             var result = await _fixedIncomeRepository.GetCalculatedFixedIncomeAsync(_rescueDate);

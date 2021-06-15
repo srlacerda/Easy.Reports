@@ -9,9 +9,13 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
 {
     public class GetHandler : IRequestHandler<GetQuery, GetResult>
     {
+        private readonly string _logSucess = "Consolidated Investments got sucessfully.";
+        private readonly string _logError = "An error has occurred during the request.";
+        private readonly ILogger _logger;
         private readonly IConsolidatedInvestmentRepository _consolidatedInvestmentRepository;
-        public GetHandler(IConsolidatedInvestmentRepository consolidatedInvestmentRepository)
+        public GetHandler(ILogger logger, IConsolidatedInvestmentRepository consolidatedInvestmentRepository)
         {
+            _logger = logger;
             _consolidatedInvestmentRepository = consolidatedInvestmentRepository;
         }
         public async Task<GetResult> Handle(GetQuery request, CancellationToken cancellationToken)
@@ -20,22 +24,16 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
             try
             {
                 var investments = await _consolidatedInvestmentRepository.GetAllCalculatedInvestmentsAsync(request.RescueDate);
-
-                getResult = new GetResult
-                {
-                    TotalValue = investments.Sum(i => i.RescueValue),
-                    Investments = investments
-                };
-
+                getResult = (GetResult) investments.ToList();
+                _logger.Info(_logSucess);
             }
             catch (Exception e)
             {
+                _logger.Error(e, _logError);
                 getResult = new GetResult();
-
             }
 
             return getResult;
-
         }
     }
 }
