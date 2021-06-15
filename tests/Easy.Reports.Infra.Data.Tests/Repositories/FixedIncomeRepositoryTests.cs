@@ -21,9 +21,9 @@ namespace Easy.Reports.Data.Tests.Repositories
             _rescueDate = new DateTime(2021, 06, 14);
         }
 
-        [Fact(DisplayName = "Get Calculated Investment Fund Ok")]
+        [Fact(DisplayName = "Get Investment Fund Ok")]
         [Trait("Category", "Repository - FixedIncome")]
-        public async Task FixedIncomeRepository_CalculatedFixedIncomeAsync_MustGetOk()
+        public async Task FixedIncomeRepository_FixedIncomeAsync_MustGetOk()
         {
             // Arrange
             var apiResponsefixedIncomeMockModel = _fixedIncomeRepositoryTestsFixture.GenerateApiResponseFixedIncomeMockModelOk();
@@ -34,7 +34,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponsefixedIncomeMockModel);
 
             // Act
-            var result = await _fixedIncomeRepository.GetCalculatedFixedIncomeAsync(_rescueDate);
+            var result = await _fixedIncomeRepository.GetFixedIncomeAsync(_rescueDate);
             var resultFixedIncomeFirst = result.FirstOrDefault();
 
             // Assert
@@ -46,9 +46,9 @@ namespace Easy.Reports.Data.Tests.Repositories
             Assert.Equal(fixedIncomeMockModelListFirst.Name, resultFixedIncomeFirst.Name);
         }
 
-        [Fact(DisplayName = "Get Calculated Investment Fund Not Ok")]
+        [Fact(DisplayName = "Get Investment Fund Not Ok")]
         [Trait("Category", "Repository - FixedIncome")]
-        public async Task FixedIncomeRepository_CalculatedFixedIncomeAsync_MustGetNotOK()
+        public async Task FixedIncomeRepository_FixedIncomeAsync_MustGetNotOK()
         {
             // Arrange
             var apiResponsefixedIncomeMockModel = _fixedIncomeRepositoryTestsFixture.GenerateApiResponseFixedIncomeMockModelNotOk();
@@ -58,7 +58,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponsefixedIncomeMockModel);
 
             // Act
-            var result = await _fixedIncomeRepository.GetCalculatedFixedIncomeAsync(_rescueDate);
+            var result = await _fixedIncomeRepository.GetFixedIncomeAsync(_rescueDate);
 
             // Assert
             _fixedIncomeRepositoryTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetFixedIncomeAsync(), Times.Once);

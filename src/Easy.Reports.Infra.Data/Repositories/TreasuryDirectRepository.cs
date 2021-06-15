@@ -13,7 +13,7 @@ namespace Easy.Reports.Infra.Data.Repositories
         {
             _mockService = mockService;
         }
-        public async Task<IEnumerable<TreasuryDirect>> GetCalculatedTreasuryDirectAsync(DateTime rescueDate)
+        public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirectAsync(DateTime rescueDate)
         {
             var apiResponseTreasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
             var treasuryDirectList = new List<TreasuryDirect>();
@@ -22,9 +22,7 @@ namespace Easy.Reports.Infra.Data.Repositories
             {
                 foreach (var treasuryDirectMock in apiResponseTreasuryDirectMockModel.Content.TreasuryDirectList)
                 {
-                    var treasuryDirect = (TreasuryDirect)treasuryDirectMock;
-                    treasuryDirect.PerformCalculationsRescue(rescueDate);
-                    treasuryDirectList.Add(treasuryDirect);
+                    treasuryDirectList.Add((TreasuryDirect)treasuryDirectMock);
                 }
             }
 

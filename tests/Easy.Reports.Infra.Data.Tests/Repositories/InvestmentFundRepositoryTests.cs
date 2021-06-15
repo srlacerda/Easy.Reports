@@ -21,9 +21,9 @@ namespace Easy.Reports.Data.Tests.Repositories
             _rescueDate = new DateTime(2021, 06, 14);
         }
 
-        [Fact(DisplayName = "Get Calculated Investment Fund Ok")]
+        [Fact(DisplayName = "Get Investment Fund Ok")]
         [Trait("Category", "Repository - InvestmentFund")]
-        public async Task InvestmentFundRepository_CalculatedInvestmentFundAsync_MustGetOk()
+        public async Task InvestmentFundRepository_InvestmentFundAsync_MustGetOk()
         {
             // Arrange
             var apiResponseinvestmentFundMockModel = _investmentFundRepositoryTestsFixture.GenerateApiResponseInvestmentFundMockModelOk();
@@ -34,7 +34,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseinvestmentFundMockModel);
 
             // Act
-            var result = await _investmentFundRepository.GetCalculatedInvestmentFundAsync(_rescueDate);
+            var result = await _investmentFundRepository.GetInvestmentFundAsync(_rescueDate);
             var resultInvestmentFundFirst = result.FirstOrDefault();
 
             // Assert
@@ -46,9 +46,9 @@ namespace Easy.Reports.Data.Tests.Repositories
             Assert.Equal(investmentFundMockModelListFirst.Name, resultInvestmentFundFirst.Name);
         }
 
-        [Fact(DisplayName = "Get Calculated Investment Fund Not Ok")]
+        [Fact(DisplayName = "Get Investment Fund Not Ok")]
         [Trait("Category", "Repository - InvestmentFund")]
-        public async Task InvestmentFundRepository_CalculatedInvestmentFundAsync_MustGetNotOK()
+        public async Task InvestmentFundRepository_InvestmentFundAsync_MustGetNotOK()
         {
             // Arrange
             var apiResponseinvestmentFundMockModel = _investmentFundRepositoryTestsFixture.GenerateApiResponseInvestmentFundMockModelNotOk();
@@ -58,7 +58,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseinvestmentFundMockModel);
 
             // Act
-            var result = await _investmentFundRepository.GetCalculatedInvestmentFundAsync(_rescueDate);
+            var result = await _investmentFundRepository.GetInvestmentFundAsync(_rescueDate);
 
             // Assert
             _investmentFundRepositoryTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetInvestmentFundAsync(), Times.Once);

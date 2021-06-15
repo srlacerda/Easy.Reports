@@ -21,9 +21,9 @@ namespace Easy.Reports.Data.Tests.Repositories
             _rescueDate = new DateTime(2021, 06, 14);
         }
 
-        [Fact(DisplayName = "Get Calculated Treasury Direct Ok")]
+        [Fact(DisplayName = "Get Treasury Direct Ok")]
         [Trait("Category", "Repository - TreasuryDirect")]
-        public async Task TreasuryDirectRepository_CalculatedTreasuryDirectAsync_MustGetOk()
+        public async Task TreasuryDirectRepository_TreasuryDirectAsync_MustGetOk()
         {
             // Arrange
             var apiResponseTreasuryDirectMockModel = _treasuryDirectRepositoryTestsFixture.GenerateApiResponseTreasuryDirectMockModelOk();
@@ -34,7 +34,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseTreasuryDirectMockModel);
 
             // Act
-            var result = await _treasuryDirectRepository.GetCalculatedTreasuryDirectAsync(_rescueDate);
+            var result = await _treasuryDirectRepository.GetTreasuryDirectAsync(_rescueDate);
             var resultTreasuryDirectFirst = result.FirstOrDefault();
 
             // Assert
@@ -46,9 +46,9 @@ namespace Easy.Reports.Data.Tests.Repositories
             Assert.Equal(treasuryDirectMockModelListFirst.Name, resultTreasuryDirectFirst.Name);
         }
 
-        [Fact(DisplayName = "Get Calculated Treasury Direct Not Ok")]
+        [Fact(DisplayName = "Get Treasury Direct Not Ok")]
         [Trait("Category", "Repository - TreasuryDirect")]
-        public async Task TreasuryDirectRepository_CalculatedTreasuryDirectAsync_MustGetNotOK()
+        public async Task TreasuryDirectRepository_TreasuryDirectAsync_MustGetNotOK()
         {
             // Arrange
             var apiResponseTreasuryDirectMockModel = _treasuryDirectRepositoryTestsFixture.GenerateApiResponseTreasuryDirectMockModelNotOk();
@@ -58,7 +58,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseTreasuryDirectMockModel);
 
             // Act
-            var result = await _treasuryDirectRepository.GetCalculatedTreasuryDirectAsync(_rescueDate);
+            var result = await _treasuryDirectRepository.GetTreasuryDirectAsync(_rescueDate);
 
             // Assert
             _treasuryDirectRepositoryTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetTreasuryDirectAsync(), Times.Once);

@@ -56,15 +56,15 @@ namespace Easy.Reports.Data.Tests.Repositories
             #endregion
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>()
-                .Setup(td => td.GetCalculatedTreasuryDirectAsync(_rescueDate))
+                .Setup(td => td.GetTreasuryDirectAsync(_rescueDate))
                 .ReturnsAsync(treasuryDirectList);
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IFixedIncomeRepository>()
-                .Setup(fi => fi.GetCalculatedFixedIncomeAsync(_rescueDate))
+                .Setup(fi => fi.GetFixedIncomeAsync(_rescueDate))
                 .ReturnsAsync(fixedIncomeList);
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IInvestmentFundRepository>()
-                .Setup(i => i.GetCalculatedInvestmentFundAsync(_rescueDate))
+                .Setup(i => i.GetInvestmentFundAsync(_rescueDate))
                 .ReturnsAsync(investmentFundList);
 
             // Act
@@ -74,26 +74,28 @@ namespace Easy.Reports.Data.Tests.Repositories
             var resultInvestmentsInvestmentFundFirst = resultInvestments.OfType<InvestmentFund>().FirstOrDefault();
 
             // Assert
-            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>().Verify(td => td.GetCalculatedTreasuryDirectAsync(_rescueDate), Times.Once);
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>().Verify(td => td.GetTreasuryDirectAsync(_rescueDate), Times.Once);
             Assert.Equal(treasuryDirectFirst.InvestedValue, resultInvestmentsTreasuryDirectFirst.InvestedValue);
             Assert.Equal(treasuryDirectFirst.TotalValue, resultInvestmentsTreasuryDirectFirst.TotalValue);
             Assert.Equal(treasuryDirectFirst.DueDate, resultInvestmentsTreasuryDirectFirst.DueDate);
             Assert.Equal(treasuryDirectFirst.PurchaseDate, resultInvestmentsTreasuryDirectFirst.PurchaseDate);
             Assert.Equal(treasuryDirectFirst.Name, resultInvestmentsTreasuryDirectFirst.Name);
 
-            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IFixedIncomeRepository>().Verify(fi => fi.GetCalculatedFixedIncomeAsync(_rescueDate), Times.Once);
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IFixedIncomeRepository>().Verify(fi => fi.GetFixedIncomeAsync(_rescueDate), Times.Once);
             Assert.Equal(fixedIncomeFirst.InvestedValue, resultInvestmentsFixedIncomeFirst.InvestedValue);
             Assert.Equal(fixedIncomeFirst.TotalValue, resultInvestmentsFixedIncomeFirst.TotalValue);
             Assert.Equal(fixedIncomeFirst.DueDate, resultInvestmentsFixedIncomeFirst.DueDate);
             Assert.Equal(fixedIncomeFirst.PurchaseDate, resultInvestmentsFixedIncomeFirst.PurchaseDate);
             Assert.Equal(fixedIncomeFirst.Name, resultInvestmentsFixedIncomeFirst.Name);
 
-            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IInvestmentFundRepository>().Verify(i => i.GetCalculatedInvestmentFundAsync(_rescueDate), Times.Once);
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IInvestmentFundRepository>().Verify(i => i.GetInvestmentFundAsync(_rescueDate), Times.Once);
             Assert.Equal(investmentFundFirst.InvestedValue, resultInvestmentsInvestmentFundFirst.InvestedValue);
             Assert.Equal(investmentFundFirst.TotalValue, resultInvestmentsInvestmentFundFirst.TotalValue);
             Assert.Equal(investmentFundFirst.DueDate, resultInvestmentsInvestmentFundFirst.DueDate);
             Assert.Equal(investmentFundFirst.PurchaseDate, resultInvestmentsInvestmentFundFirst.PurchaseDate);
             Assert.Equal(investmentFundFirst.Name, resultInvestmentsInvestmentFundFirst.Name);
+
+
         }
 
         [Fact(DisplayName = "Get Consolidated Investments Not Ok")]
@@ -124,24 +126,24 @@ namespace Easy.Reports.Data.Tests.Repositories
             #endregion
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>()
-                .Setup(td => td.GetCalculatedTreasuryDirectAsync(_rescueDate))
+                .Setup(td => td.GetTreasuryDirectAsync(_rescueDate))
                 .ReturnsAsync(treasuryDirectList);
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IFixedIncomeRepository>()
-                .Setup(fi => fi.GetCalculatedFixedIncomeAsync(_rescueDate))
+                .Setup(fi => fi.GetFixedIncomeAsync(_rescueDate))
                 .ReturnsAsync(fixedIncomeList);
 
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IInvestmentFundRepository>()
-                .Setup(i => i.GetCalculatedInvestmentFundAsync(_rescueDate))
+                .Setup(i => i.GetInvestmentFundAsync(_rescueDate))
                 .ReturnsAsync(investmentFundList);
 
             // Act
             var resultInvestments = await _consolidatedInvestmentRepository.GetAllCalculatedInvestmentsAsync(_rescueDate);
 
             // Assert
-            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>().Verify(td => td.GetCalculatedTreasuryDirectAsync(_rescueDate), Times.Once);
-            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IFixedIncomeRepository>().Verify(fi => fi.GetCalculatedFixedIncomeAsync(_rescueDate), Times.Once);
-            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IInvestmentFundRepository>().Verify(i => i.GetCalculatedInvestmentFundAsync(_rescueDate), Times.Once);
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>().Verify(td => td.GetTreasuryDirectAsync(_rescueDate), Times.Once);
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IFixedIncomeRepository>().Verify(fi => fi.GetFixedIncomeAsync(_rescueDate), Times.Once);
+            _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IInvestmentFundRepository>().Verify(i => i.GetInvestmentFundAsync(_rescueDate), Times.Once);
             Assert.Empty(resultInvestments);
         }
     }

@@ -13,7 +13,7 @@ namespace Easy.Reports.Infra.Data.Repositories
         {
             _mockService = mockService;
         }
-        public async Task<IEnumerable<InvestmentFund>> GetCalculatedInvestmentFundAsync(DateTime rescueDate)
+        public async Task<IEnumerable<InvestmentFund>> GetInvestmentFundAsync(DateTime rescueDate)
         {
             var apiResponseInvestmentFundMockModel = await _mockService.GetInvestmentFundAsync();
             var investmentFundList = new List<InvestmentFund>();
@@ -22,11 +22,10 @@ namespace Easy.Reports.Infra.Data.Repositories
             {
                 foreach (var investmentFundMock in apiResponseInvestmentFundMockModel.Content.InvestmentFundList)
                 {
-                    var investmentFund = (InvestmentFund)investmentFundMock;
-                    investmentFund.PerformCalculationsRescue(rescueDate);
-                    investmentFundList.Add(investmentFund);
+                    investmentFundList.Add((InvestmentFund)investmentFundMock);
                 }
             }
+
             return investmentFundList;
         }
     }

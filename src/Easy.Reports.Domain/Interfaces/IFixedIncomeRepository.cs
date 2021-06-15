@@ -7,6 +7,6 @@ namespace Easy.Reports.Domain.Interfaces
 {
     public interface IFixedIncomeRepository
     {
-        Task<IEnumerable<FixedIncome>> GetCalculatedFixedIncomeAsync(DateTime rescueDate);
+        Task<IEnumerable<FixedIncome>> GetFixedIncomeAsync(DateTime rescueDate);
     }
 }

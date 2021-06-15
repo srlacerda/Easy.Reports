@@ -32,12 +32,17 @@ namespace Easy.Reports.Infra.Data.Repositories
                 };
 
                 var resultInvestments = await Task.WhenAll(
-                    GetCalculatedTreasuryDirectAsync(rescueDate),
-                    GetCalculatedFixedIncomeAsync(rescueDate),
-                    GetCalculatedInvestmentFundAsync(rescueDate)
+                    GetTreasuryDirectAsync(rescueDate),
+                    GetFixedIncomeAsync(rescueDate),
+                    GetInvestmentFundAsync(rescueDate)
                 );
 
                 investments = resultInvestments.Aggregate((r1, r2) => r1.Concat(r2));
+
+                foreach (var investment in investments)
+                {
+                    investment.PerformCalculationsRescue(rescueDate);
+                }
 
                 _memoryCache.Set(cashKey, investments, memoryCacheEntryOptions);
             }
@@ -45,19 +50,19 @@ namespace Easy.Reports.Infra.Data.Repositories
             return investments;
         }
 
-        private async Task<IEnumerable<Investment>> GetCalculatedTreasuryDirectAsync(DateTime rescueDate)
+        private async Task<IEnumerable<Investment>> GetTreasuryDirectAsync(DateTime rescueDate)
         {
-            return await _treasuryDirectRepository.GetCalculatedTreasuryDirectAsync(rescueDate);
+            return await _treasuryDirectRepository.GetTreasuryDirectAsync(rescueDate);
         }
 
-        private async Task<IEnumerable<Investment>> GetCalculatedFixedIncomeAsync(DateTime rescueDate)
+        private async Task<IEnumerable<Investment>> GetFixedIncomeAsync(DateTime rescueDate)
         {
-            return await _fixedIncomeRepository.GetCalculatedFixedIncomeAsync(rescueDate);
+            return await _fixedIncomeRepository.GetFixedIncomeAsync(rescueDate);
         }
 
-        private async Task<IEnumerable<Investment>> GetCalculatedInvestmentFundAsync(DateTime rescueDate)
+        private async Task<IEnumerable<Investment>> GetInvestmentFundAsync(DateTime rescueDate)
         {
-            return await _investmentFundRepository.GetCalculatedInvestmentFundAsync(rescueDate);
+            return await _investmentFundRepository.GetInvestmentFundAsync(rescueDate);
         }
     }
 }
