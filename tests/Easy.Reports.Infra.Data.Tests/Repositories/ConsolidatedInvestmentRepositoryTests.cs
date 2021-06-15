@@ -94,8 +94,6 @@ namespace Easy.Reports.Data.Tests.Repositories
             Assert.Equal(investmentFundFirst.DueDate, resultInvestmentsInvestmentFundFirst.DueDate);
             Assert.Equal(investmentFundFirst.PurchaseDate, resultInvestmentsInvestmentFundFirst.PurchaseDate);
             Assert.Equal(investmentFundFirst.Name, resultInvestmentsInvestmentFundFirst.Name);
-
-
         }
 
         [Fact(DisplayName = "Get Consolidated Investments Not Ok")]
