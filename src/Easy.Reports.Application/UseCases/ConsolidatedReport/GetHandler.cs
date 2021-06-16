@@ -10,7 +10,7 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
     {
         private readonly string _logSucess = "Consolidated Investments got sucessfully.";
         private readonly string _logError = "An error has occurred during the request.";
-        private readonly string _logNull = "COLOCAR UMA MENSAGEM QUANDO NAO CONSEGUIR";
+        private readonly string _logNull = "It was not possible to got the investments.";
 
         private readonly ILogger _logger;
         private readonly IConsolidatedInvestmentRepository _consolidatedInvestmentRepository;
