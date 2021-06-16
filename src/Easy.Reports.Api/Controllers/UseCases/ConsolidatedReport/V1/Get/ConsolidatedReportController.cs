@@ -18,10 +18,10 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
         {
             var getQuery = new GetQuery(DateTime.Now);
             var response = await _mediator.Send(getQuery, CancellationToken.None);
+            
             if (response == null)
-            {
                 return NoContent();
-            }
+
             return Ok(JsonConvert.SerializeObject(response));
         }
     }
