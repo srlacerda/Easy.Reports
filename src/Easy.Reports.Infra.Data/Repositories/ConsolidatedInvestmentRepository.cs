@@ -34,7 +34,7 @@ namespace Easy.Reports.Infra.Data.Repositories
 
                 investments = resultInvestments.Aggregate((r1, r2) => r1?.Concat(r2));
 
-                if (investments == null)
+                if (!investments.Any())
                     return null;
 
                 foreach (var investment in investments)
