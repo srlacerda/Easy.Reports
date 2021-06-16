@@ -1,5 +1,6 @@
 ﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
 using Easy.Reports.Domain.Entities;
+using Easy.Reports.Domain.Models;
 using Moq.AutoMock;
 using System;
 using System.Collections.Generic;
@@ -43,12 +44,14 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
 
         private TreasuryDirect GenerateTreasuryDirect()
         {
-            return new TreasuryDirect(
-                investedValue: 1000,
-                totalValue: 2000,
-                dueDate: new DateTime(2015, 03, 01),
-                purchaseDate: new DateTime(2015, 03, 01),
-                name: "Tesouro Selic 2025");
+            return new TreasuryDirect(new TreasuryDirectMock
+            {
+                InvestedValue = 1000,
+                TotalValue = 2000,
+                DueDate = new DateTime(2015, 03, 01),
+                PurchaseDate = new DateTime(2015, 03, 01),
+                Name = "Tesouro Selic 2025"
+            });
         }
         public void Dispose() { }
     }

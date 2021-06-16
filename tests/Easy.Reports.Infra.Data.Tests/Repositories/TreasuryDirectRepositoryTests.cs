@@ -27,7 +27,7 @@ namespace Easy.Reports.Data.Tests.Repositories
         {
             // Arrange
             var apiResponseTreasuryDirectMockModel = _treasuryDirectRepositoryTestsFixture.GenerateApiResponseTreasuryDirectMockModelOk();
-            var treasuryDirectMockModelListFirst = apiResponseTreasuryDirectMockModel.Content.TreasuryDirectList.ToList().FirstOrDefault();
+            var treasuryDirectMockModelListFirst = apiResponseTreasuryDirectMockModel.Content.TreasuryDirectMockList.ToList().FirstOrDefault();
 
             _treasuryDirectRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetTreasuryDirectAsync())

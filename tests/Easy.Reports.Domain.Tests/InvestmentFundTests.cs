@@ -1,4 +1,5 @@
 ﻿using Easy.Reports.Domain.Entities;
+using Easy.Reports.Domain.Models;
 using System;
 using Xunit;
 
@@ -9,14 +10,14 @@ namespace Easy.Reports.Domain.Tests
         private readonly InvestmentFund _investmentFund;
         public InvestmentFundTests()
         {
-            _investmentFund = new InvestmentFund
-            (
-                investedValue: 1000.0m,
-                totalValue: 1159m,
-                dueDate: new DateTime(2022, 10, 01),
-                purchaseDate: new DateTime(2017, 10, 01),
-                name: "ALASKA"
-            );
+            _investmentFund = new InvestmentFund(new InvestmentFundMock
+            {
+                InvestedCapital = 1000.0m,
+                CurrentValue = 1159m,
+                RescueDate = new DateTime(2022, 10, 01),
+                PurchaseDate = new DateTime(2017, 10, 01),
+                Name = "ALASKA"
+            });
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With Rescue Date Equal Due Date")]

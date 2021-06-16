@@ -4,6 +4,7 @@ using Moq.AutoMock;
 using System;
 using System.Collections.Generic;
 using Xunit;
+using Easy.Reports.Domain.Models;
 
 namespace Easy.Reports.Data.Tests.Repositories
 {
@@ -25,14 +26,14 @@ namespace Easy.Reports.Data.Tests.Repositories
         {
             return new List<TreasuryDirect>
             {
-                new TreasuryDirect
-                (
-                    investedValue: 799.4720m,
-                    totalValue: 829.68m,
-                    dueDate: new DateTime(2025, 03, 01),
-                    purchaseDate: new DateTime(2015, 03, 01),
-                    name: "Tesouro Selic 2025"
-                )
+                new TreasuryDirect(new TreasuryDirectMock
+                {
+                    InvestedValue = 799.4720m,
+                    TotalValue = 829.68m,
+                    DueDate = new DateTime(2025, 03, 01),
+                    PurchaseDate = new DateTime(2015, 03, 01),
+                    Name = "Tesouro Selic 2025"
+                })
             };
         }
 
@@ -45,14 +46,14 @@ namespace Easy.Reports.Data.Tests.Repositories
         {
             return new List<FixedIncome>
             {
-                new FixedIncome
-                (
-                    investedValue: 2000.0m,
-                    totalValue: 2097.85m,
-                    dueDate: new DateTime(2021, 03, 09),
-                    purchaseDate: new DateTime(2019, 03, 14),
-                    name: "BANCO MAXIMA"
-                )
+                new FixedIncome(new FixedIncomeMock
+                {
+                    InvestedCapital = 2000.0m,
+                    CurrentCapital = 2097.85m,
+                    DueDate= new DateTime(2021, 03, 09),
+                    OperationDate = new DateTime(2019, 03, 14),
+                    Name= "BANCO MAXIMA"
+                })
             };
         }
         public IEnumerable<FixedIncome> GenerateFixedIncomeListNotOk()
@@ -64,14 +65,14 @@ namespace Easy.Reports.Data.Tests.Repositories
         {
             return new List<InvestmentFund>
             {
-                new InvestmentFund
-                (
-                    investedValue: 1000.0m,
-                    totalValue: 1159m,
-                    dueDate: new DateTime(2022, 10, 01),
-                    purchaseDate: new DateTime(2017, 10, 01),
-                    name: "ALASKA"
-                )
+                new InvestmentFund(new InvestmentFundMock
+                {
+                    InvestedCapital = 1000.0m,
+                    CurrentValue = 1159m,
+                    RescueDate = new DateTime(2022, 10, 01),
+                    PurchaseDate = new DateTime(2017, 10, 01),
+                    Name = "ALASKA"
+                })
             };
         }
         public IEnumerable<InvestmentFund> GenerateInvestmentFundListNotOk()

@@ -17,11 +17,19 @@ namespace Easy.Reports.Infra.Data.Repositories
         public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirectAsync(DateTime rescueDate)
         {
             var apiResponseTreasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
+            var treasuryDirectList = new List<TreasuryDirect>();
 
             if (apiResponseTreasuryDirectMockModel.IsSuccessStatusCode)
-                return apiResponseTreasuryDirectMockModel.Content.TreasuryDirectList.Select(x => (TreasuryDirect) x);
+            {
+                foreach (var treasuryDirectMock in apiResponseTreasuryDirectMockModel.Content.TreasuryDirectMockList)
+                {
+                    var treasuryDirect = new TreasuryDirect(treasuryDirectMock);
+                    treasuryDirect.PerformCalculationsRescue(rescueDate);
+                    treasuryDirectList.Add(treasuryDirect);
+                }
+            }
 
-            return new List<TreasuryDirect>();
+            return treasuryDirectList;
         }
     }
 }

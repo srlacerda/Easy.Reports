@@ -142,7 +142,7 @@ namespace Easy.Reports.Data.Tests.Repositories
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<ITreasuryDirectRepository>().Verify(td => td.GetTreasuryDirectAsync(_rescueDate), Times.Once);
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IFixedIncomeRepository>().Verify(fi => fi.GetFixedIncomeAsync(_rescueDate), Times.Once);
             _consolidatedInvestmentRepositoryTestsFixture.Mocker.GetMock<IInvestmentFundRepository>().Verify(i => i.GetInvestmentFundAsync(_rescueDate), Times.Once);
-            Assert.Empty(resultInvestments);
+            Assert.True(resultInvestments == null);
         }
     }
 }

@@ -6,6 +6,6 @@ namespace Easy.Reports.Domain.Models
     public class FixedIncomeMockModel
     {
         [JsonProperty("lcis")]
-        public IEnumerable<FixedIncomeMock> FixedIncomeList { get; set; }
+        public IEnumerable<FixedIncomeMock> FixedIncomeMockList { get; set; }
     }
 }

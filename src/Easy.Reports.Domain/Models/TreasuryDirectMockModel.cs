@@ -6,6 +6,6 @@ namespace Easy.Reports.Domain.Models
     public class TreasuryDirectMockModel
     {
         [JsonProperty("tds")]
-        public IEnumerable<TreasuryDirectMock> TreasuryDirectList { get; set; }
+        public IEnumerable<TreasuryDirectMock> TreasuryDirectMockList { get; set; }
     }
 }

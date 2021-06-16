@@ -33,7 +33,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 GenerateFixedIncomeMock()
             };
 
-            fixedIncomeMockModel.FixedIncomeList = fixedIncomeMockList;
+            fixedIncomeMockModel.FixedIncomeMockList = fixedIncomeMockList;
             return new ApiResponse<FixedIncomeMockModel>(httpResponseMessage, fixedIncomeMockModel);
         }
 

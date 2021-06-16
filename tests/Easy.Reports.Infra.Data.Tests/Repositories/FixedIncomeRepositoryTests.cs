@@ -27,7 +27,7 @@ namespace Easy.Reports.Data.Tests.Repositories
         {
             // Arrange
             var apiResponsefixedIncomeMockModel = _fixedIncomeRepositoryTestsFixture.GenerateApiResponseFixedIncomeMockModelOk();
-            var fixedIncomeMockModelListFirst = apiResponsefixedIncomeMockModel.Content.FixedIncomeList.ToList().FirstOrDefault();
+            var fixedIncomeMockModelListFirst = apiResponsefixedIncomeMockModel.Content.FixedIncomeMockList.ToList().FirstOrDefault();
 
             _fixedIncomeRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetFixedIncomeAsync())

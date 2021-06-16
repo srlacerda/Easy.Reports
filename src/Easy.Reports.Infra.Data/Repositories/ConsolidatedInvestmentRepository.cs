@@ -37,9 +37,6 @@ namespace Easy.Reports.Infra.Data.Repositories
                 if (!investments.Any())
                     return null;
 
-                foreach (var investment in investments)
-                    investment.PerformCalculationsRescue(rescueDate);
-
                 _memoryCache.Set(cashKey, investments, new MemoryCacheEntryOptions {AbsoluteExpiration = rescueDate.Date.AddDays(1)});
             }
 

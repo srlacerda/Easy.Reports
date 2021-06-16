@@ -17,11 +17,19 @@ namespace Easy.Reports.Infra.Data.Repositories
         public async Task<IEnumerable<FixedIncome>> GetFixedIncomeAsync(DateTime rescueDate)
         {
             var apiResponseFixedIncomeMockModel = await _mockService.GetFixedIncomeAsync();
+            var fixedIncomeList = new List<FixedIncome>();
 
             if (apiResponseFixedIncomeMockModel.IsSuccessStatusCode)
-                return apiResponseFixedIncomeMockModel.Content.FixedIncomeList.Select(x => (FixedIncome) x);
+            {
+                foreach (var FixedIncomeMock in apiResponseFixedIncomeMockModel.Content.FixedIncomeMockList)
+                {
+                    var fixedIncome = new FixedIncome(FixedIncomeMock);
+                    fixedIncome.PerformCalculationsRescue(rescueDate);
+                    fixedIncomeList.Add(fixedIncome);
+                }
+            }
 
-            return new List<FixedIncome>();
+            return fixedIncomeList;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 GenerateInvestmentFundMock()
             };
 
-            investmentFundMockModel.InvestmentFundList = investmentFundMockList;
+            investmentFundMockModel.InvestmentFundMockList = investmentFundMockList;
             return new ApiResponse<InvestmentFundMockModel>(httpResponseMessage, investmentFundMockModel);
         }
 

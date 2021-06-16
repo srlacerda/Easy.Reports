@@ -27,7 +27,7 @@ namespace Easy.Reports.Data.Tests.Repositories
         {
             // Arrange
             var apiResponseinvestmentFundMockModel = _investmentFundRepositoryTestsFixture.GenerateApiResponseInvestmentFundMockModelOk();
-            var investmentFundMockModelListFirst = apiResponseinvestmentFundMockModel.Content.InvestmentFundList.ToList().FirstOrDefault();
+            var investmentFundMockModelListFirst = apiResponseinvestmentFundMockModel.Content.InvestmentFundMockList.ToList().FirstOrDefault();
 
             _investmentFundRepositoryTestsFixture.Mocker.GetMock<IMockService>()
                 .Setup(mc => mc.GetInvestmentFundAsync())

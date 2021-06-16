@@ -6,6 +6,6 @@ namespace Easy.Reports.Domain.Models
     public class InvestmentFundMockModel
     {
         [JsonProperty("fundos")]
-        public IEnumerable<InvestmentFundMock> InvestmentFundList { get; set; }
+        public IEnumerable<InvestmentFundMock> InvestmentFundMockList { get; set; }
     }
 }

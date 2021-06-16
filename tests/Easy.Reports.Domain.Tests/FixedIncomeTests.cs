@@ -1,4 +1,5 @@
 ﻿using Easy.Reports.Domain.Entities;
+using Easy.Reports.Domain.Models;
 using System;
 using Xunit;
 
@@ -9,14 +10,14 @@ namespace Easy.Reports.Domain.Tests
         private readonly FixedIncome _fixedIncome;
         public FixedIncomeTests()
         {
-            _fixedIncome = new FixedIncome
-            (
-                investedValue: 2000.0m,
-                totalValue: 2097.85m,
-                dueDate: new DateTime(2021, 03, 09),
-                purchaseDate: new DateTime(2019, 03, 14),
-                name: "BANCO MAXIMA"
-            );
+            _fixedIncome = new FixedIncome(new FixedIncomeMock
+            {
+                InvestedCapital = 2000.0m,
+                CurrentCapital = 2097.85m,
+                DueDate = new DateTime(2021, 03, 09),
+                OperationDate = new DateTime(2019, 03, 14),
+                Name = "BANCO MAXIMA"
+            });
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With Rescue Date Equal Due Date")]

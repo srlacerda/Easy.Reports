@@ -33,7 +33,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 GenerateTreasuryDirectMock()
             };
 
-            treasuryDirectMockModel.TreasuryDirectList = treasuryDirectMockList;
+            treasuryDirectMockModel.TreasuryDirectMockList = treasuryDirectMockList;
             return new ApiResponse<TreasuryDirectMockModel>(httpResponseMessage, treasuryDirectMockModel);
         }
 

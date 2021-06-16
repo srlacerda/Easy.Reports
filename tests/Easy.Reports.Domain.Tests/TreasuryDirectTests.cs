@@ -1,4 +1,5 @@
 ﻿using Easy.Reports.Domain.Entities;
+using Easy.Reports.Domain.Models;
 using System;
 using Xunit;
 
@@ -9,14 +10,14 @@ namespace Easy.Reports.Domain.Tests
         private readonly TreasuryDirect _treasuryDirect;
         public TreasuryDirectTests()
         {
-            _treasuryDirect = new TreasuryDirect
-            (
-                investedValue: 799.4720m,
-                totalValue: 829.68m,
-                dueDate: new DateTime(2025, 03, 01),
-                purchaseDate: new DateTime(2015, 03, 01),
-                name: "Tesouro Selic 2025"
-            );
+            _treasuryDirect =  new TreasuryDirect(new TreasuryDirectMock
+            {
+                InvestedValue = 799.4720m,
+                TotalValue = 829.68m,
+                DueDate = new DateTime(2025, 03, 01),
+                PurchaseDate = new DateTime(2015, 03, 01),
+                Name = "Tesouro Selic 2025"
+            });
         }
 
         [Fact(DisplayName = "Calculate Rescue Value With Rescue Date Equal Due Date")]
