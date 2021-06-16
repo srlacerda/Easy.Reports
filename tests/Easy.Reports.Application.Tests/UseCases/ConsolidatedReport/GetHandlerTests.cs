@@ -36,7 +36,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
 
             // Act
             var result = await _getHandler.Handle(_getQuery, _cancellationToken);
-            var resultInvestmentsListFirst = result.investimentos.ToList().FirstOrDefault();
+            var resultInvestmentsListFirst = result.investiments.ToList().FirstOrDefault();
 
             // Assert
             _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
@@ -62,7 +62,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
 
             // Assert
             _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
-            Assert.Empty(result.investimentos);
+            Assert.Empty(result.investiments);
         }
     }
 }

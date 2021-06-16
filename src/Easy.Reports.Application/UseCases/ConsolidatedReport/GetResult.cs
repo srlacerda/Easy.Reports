@@ -19,17 +19,17 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
         {
             get
             {
-                return Math.Round(investimentos?.Sum(i => i.TotalValue) ?? 0, _totalValueDecimalPlace);
+                return Math.Round(investiments?.Sum(i => i.TotalValue) ?? 0, _totalValueDecimalPlace);
             }
         }
-        public IList<GetResultInvestments> investimentos { get; set; }
+        public IList<GetResultInvestments> investiments { get; set; }
 
         public GetResult(IEnumerable<Investment> investments)
         {
-            this.investimentos = new List<GetResultInvestments>();
+            this.investiments = new List<GetResultInvestments>();
             foreach (var investment in investments)
             {
-                this.investimentos.Add(
+                this.investiments.Add(
                     new GetResultInvestments
                     {
                         Name = investment.Name,
