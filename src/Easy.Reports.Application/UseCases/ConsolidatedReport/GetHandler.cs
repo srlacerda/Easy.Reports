@@ -1,7 +1,6 @@
 ﻿using Easy.Reports.Domain.Interfaces;
 using MediatR;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,6 +10,8 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
     {
         private readonly string _logSucess = "Consolidated Investments got sucessfully.";
         private readonly string _logError = "An error has occurred during the request.";
+        private readonly string _logNull = "COLOCAR UMA MENSAGEM QUANDO NAO CONSEGUIR";
+
         private readonly ILogger _logger;
         private readonly IConsolidatedInvestmentRepository _consolidatedInvestmentRepository;
         public GetHandler(ILogger logger, IConsolidatedInvestmentRepository consolidatedInvestmentRepository)
@@ -20,20 +21,24 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
         }
         public async Task<GetResult> Handle(GetQuery request, CancellationToken cancellationToken)
         {
-            GetResult getResult;
             try
             {
                 var investments = await _consolidatedInvestmentRepository.GetAllCalculatedInvestmentsAsync(request.RescueDate);
-                getResult = (GetResult) investments.ToList();
+                
+                if (investments == null)
+                {
+                    _logger.Warning(_logNull);
+                    return null;
+                }
+                
                 _logger.Info(_logSucess);
+                return new GetResult(investments);
             }
             catch (Exception e)
             {
                 _logger.Error(e, _logError);
-                getResult = new GetResult();
+                return null;
             }
-
-            return getResult;
         }
     }
 }

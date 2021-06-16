@@ -22,5 +22,13 @@ namespace Easy.Reports.Infra.CrossCutting.Log
             sb.AppendLine($"Message: [{message}]");
             Console.WriteLine(sb.ToString());
         }
+
+        public void Warning(string message)
+        {
+            sb = new StringBuilder();
+            sb.AppendLine("Level: [Warning]");
+            sb.AppendLine($"Message: [{message}]");
+            Console.WriteLine(sb.ToString());
+        }
     }
 }

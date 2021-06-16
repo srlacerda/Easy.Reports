@@ -40,10 +40,10 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
 
             // Assert
             _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
-            Assert.Equal(investmentsFirst.InvestedValue, resultInvestmentsListFirst.valorInvestido);
-            Assert.Equal(investmentsFirst.TotalValue, resultInvestmentsListFirst.valorTotal);
-            Assert.Equal(investmentsFirst.DueDate, resultInvestmentsListFirst.vencimento);
-            Assert.Equal(investmentsFirst.Name, resultInvestmentsListFirst.nome);
+            Assert.Equal(investmentsFirst.InvestedValue, resultInvestmentsListFirst.InvestedValue);
+            Assert.Equal(investmentsFirst.TotalValue, resultInvestmentsListFirst.TotalValue);
+            Assert.Equal(investmentsFirst.DueDate, resultInvestmentsListFirst.DueDate);
+            Assert.Equal(investmentsFirst.Name, resultInvestmentsListFirst.Name);
         }
 
         [Fact(DisplayName = "Get Consolidated Report Not Ok")]

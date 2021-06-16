@@ -9,8 +9,6 @@ namespace Easy.Reports.Api.Configurations
     {
         public static void AddSwaggerConfiguration(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
-
             services.AddSwaggerGen(swagger =>
             {
                 swagger.SwaggerDoc("v1", new OpenApiInfo

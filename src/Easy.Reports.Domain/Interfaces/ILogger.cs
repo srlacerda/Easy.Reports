@@ -6,5 +6,6 @@ namespace Easy.Reports.Domain.Interfaces
     {
         void Error(Exception exception, string message);
         void Info(string message);
+        void Warning(string message);
     }
 }

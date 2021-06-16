@@ -2,6 +2,7 @@
 using Easy.Reports.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Easy.Reports.Infra.Data.Repositories
@@ -16,17 +17,11 @@ namespace Easy.Reports.Infra.Data.Repositories
         public async Task<IEnumerable<TreasuryDirect>> GetTreasuryDirectAsync(DateTime rescueDate)
         {
             var apiResponseTreasuryDirectMockModel = await _mockService.GetTreasuryDirectAsync();
-            var treasuryDirectList = new List<TreasuryDirect>();
 
             if (apiResponseTreasuryDirectMockModel.IsSuccessStatusCode)
-            {
-                foreach (var treasuryDirectMock in apiResponseTreasuryDirectMockModel.Content.TreasuryDirectList)
-                {
-                    treasuryDirectList.Add((TreasuryDirect)treasuryDirectMock);
-                }
-            }
+                return apiResponseTreasuryDirectMockModel.Content.TreasuryDirectList.Select(x => (TreasuryDirect) x);
 
-            return treasuryDirectList;
+            return new List<TreasuryDirect>();
         }
     }
 }

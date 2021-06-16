@@ -1,7 +1,9 @@
 ﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,11 +12,17 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
     public partial class ConsolidatedReportController : Controller
     {
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<GetResult> Get()
+        [ProducesResponseType(typeof(GetResult), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.NoContent)]
+        public async Task<IActionResult> Get()
         {
             var getQuery = new GetQuery(DateTime.Now);
-            return await _mediator.Send(getQuery, CancellationToken.None);
+            var response = await _mediator.Send(getQuery, CancellationToken.None);
+            if (response == null)
+            {
+                return NoContent();
+            }
+            return Ok(JsonConvert.SerializeObject(response));
         }
     }
 }

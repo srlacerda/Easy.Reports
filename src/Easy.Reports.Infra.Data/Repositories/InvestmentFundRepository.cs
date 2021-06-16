@@ -2,6 +2,7 @@
 using Easy.Reports.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Easy.Reports.Infra.Data.Repositories
@@ -16,17 +17,11 @@ namespace Easy.Reports.Infra.Data.Repositories
         public async Task<IEnumerable<InvestmentFund>> GetInvestmentFundAsync(DateTime rescueDate)
         {
             var apiResponseInvestmentFundMockModel = await _mockService.GetInvestmentFundAsync();
-            var investmentFundList = new List<InvestmentFund>();
 
             if (apiResponseInvestmentFundMockModel.IsSuccessStatusCode)
-            {
-                foreach (var investmentFundMock in apiResponseInvestmentFundMockModel.Content.InvestmentFundList)
-                {
-                    investmentFundList.Add((InvestmentFund)investmentFundMock);
-                }
-            }
+                return apiResponseInvestmentFundMockModel.Content.InvestmentFundList.Select(x => (InvestmentFund) x);
 
-            return investmentFundList;
+            return new List<InvestmentFund>();
         }
     }
 }

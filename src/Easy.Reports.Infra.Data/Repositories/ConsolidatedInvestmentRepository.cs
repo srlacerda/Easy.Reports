@@ -26,25 +26,21 @@ namespace Easy.Reports.Infra.Data.Repositories
         {
             if (!_memoryCache.TryGetValue(cashKey, out IEnumerable<Investment> investments))
             {
-                var memoryCacheEntryOptions = new MemoryCacheEntryOptions()
-                {
-                    AbsoluteExpiration = rescueDate.Date.AddDays(1)
-                };
-
                 var resultInvestments = await Task.WhenAll(
                     GetTreasuryDirectAsync(rescueDate),
                     GetFixedIncomeAsync(rescueDate),
                     GetInvestmentFundAsync(rescueDate)
                 );
 
-                investments = resultInvestments.Aggregate((r1, r2) => r1.Concat(r2));
+                investments = resultInvestments.Aggregate((r1, r2) => r1?.Concat(r2));
+
+                if (investments == null)
+                    return null;
 
                 foreach (var investment in investments)
-                {
                     investment.PerformCalculationsRescue(rescueDate);
-                }
 
-                _memoryCache.Set(cashKey, investments, memoryCacheEntryOptions);
+                _memoryCache.Set(cashKey, investments, new MemoryCacheEntryOptions {AbsoluteExpiration = rescueDate.Date.AddDays(1)});
             }
 
             return investments;

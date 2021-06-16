@@ -64,8 +64,6 @@ namespace Easy.Reports.Data.Tests.Repositories
             };
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }

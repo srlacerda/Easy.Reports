@@ -79,8 +79,6 @@ namespace Easy.Reports.Data.Tests.Repositories
             return new List<InvestmentFund>();
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }

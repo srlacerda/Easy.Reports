@@ -2,6 +2,7 @@
 using Easy.Reports.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Easy.Reports.Infra.Data.Repositories
@@ -16,17 +17,11 @@ namespace Easy.Reports.Infra.Data.Repositories
         public async Task<IEnumerable<FixedIncome>> GetFixedIncomeAsync(DateTime rescueDate)
         {
             var apiResponseFixedIncomeMockModel = await _mockService.GetFixedIncomeAsync();
-            var fixedIncomeList = new List<FixedIncome>();
 
             if (apiResponseFixedIncomeMockModel.IsSuccessStatusCode)
-            {
-                foreach (var fixedIncomeMock in apiResponseFixedIncomeMockModel.Content.FixedIncomeList)
-                {
-                    fixedIncomeList.Add((FixedIncome)fixedIncomeMock);
-                }
-            }
+                return apiResponseFixedIncomeMockModel.Content.FixedIncomeList.Select(x => (FixedIncome) x);
 
-            return fixedIncomeList;
+            return new List<FixedIncome>();
         }
     }
 }

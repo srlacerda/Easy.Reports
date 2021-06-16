@@ -20,6 +20,7 @@ namespace Easy.Reports.Domain.Entities
             PurchaseDate = purchaseDate;
             Name = name;
         }
+        
         public static explicit operator TreasuryDirect(TreasuryDirectMock treasuryDirectMockModel)
         {
             return new TreasuryDirect

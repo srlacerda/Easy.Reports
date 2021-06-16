@@ -50,8 +50,6 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
                 purchaseDate: new DateTime(2015, 03, 01),
                 name: "Tesouro Selic 2025");
         }
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }
