@@ -34,7 +34,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseTreasuryDirectMockModel);
 
             // Act
-            var result = await _treasuryDirectRepository.GetTreasuryDirectAsync(_rescueDate);
+            var result = await _treasuryDirectRepository.GetTreasuryDirectAsync();
             var resultTreasuryDirectFirst = result.FirstOrDefault();
 
             // Assert
@@ -58,7 +58,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseTreasuryDirectMockModel);
 
             // Act
-            var result = await _treasuryDirectRepository.GetTreasuryDirectAsync(_rescueDate);
+            var result = await _treasuryDirectRepository.GetTreasuryDirectAsync();
 
             // Assert
             _treasuryDirectRepositoryTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetTreasuryDirectAsync(), Times.Once);

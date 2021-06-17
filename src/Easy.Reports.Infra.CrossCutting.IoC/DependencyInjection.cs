@@ -1,4 +1,5 @@
-﻿using Easy.Reports.Application.UseCases.ConsolidatedReport;
+﻿using Easy.Reports.Application.Services;
+using Easy.Reports.Application.UseCases.ConsolidatedReport;
 using Easy.Reports.Domain.Interfaces;
 using Easy.Reports.Infra.CrossCutting.Log;
 using Easy.Reports.Infra.Data.Repositories;
@@ -38,7 +39,7 @@ namespace Easy.Reports.Infra.CrossCutting.IoC
 
         private static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IConsolidatedInvestmentRepository, ConsolidatedInvestmentRepository>();
+            services.AddTransient<IConsolidatedInvestmentService, ConsolidatedInvestmentService>();
             services.AddTransient<ITreasuryDirectRepository, TreasuryDirectRepository>();
             services.AddTransient<IFixedIncomeRepository, FixedIncomeRepository>();
             services.AddTransient<IInvestmentFundRepository, InvestmentFundRepository>();

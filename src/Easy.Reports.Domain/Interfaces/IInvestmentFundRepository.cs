@@ -7,6 +7,6 @@ namespace Easy.Reports.Domain.Interfaces
 {
     public interface IInvestmentFundRepository
     {
-        Task<IEnumerable<InvestmentFund>> GetInvestmentFundAsync(DateTime rescueDate);
+        Task<IEnumerable<InvestmentFund>> GetInvestmentFundAsync();
     }
 }

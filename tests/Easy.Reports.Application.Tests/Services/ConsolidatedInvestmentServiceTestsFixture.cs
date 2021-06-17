@@ -1,25 +1,25 @@
-﻿using Easy.Reports.Infra.Data.Repositories;
-using Easy.Reports.Domain.Entities;
+﻿using Easy.Reports.Domain.Entities;
 using Moq.AutoMock;
 using System;
 using System.Collections.Generic;
 using Xunit;
 using Easy.Reports.Domain.Models;
+using Easy.Reports.Application.Services;
 
-namespace Easy.Reports.Data.Tests.Repositories
+namespace Easy.Reports.Application.Tests.Services
 {
-    [CollectionDefinition(nameof(ConsolidatedInvestmentRepositoryCollection))]
-    public class ConsolidatedInvestmentRepositoryCollection : ICollectionFixture<ConsolidatedInvestmentRepositoryTestsFixture> { }
-    public class ConsolidatedInvestmentRepositoryTestsFixture : IDisposable
+    [CollectionDefinition(nameof(ConsolidatedInvestmentServiceCollection))]
+    public class ConsolidatedInvestmentServiceCollection : ICollectionFixture<ConsolidatedInvestmentServiceTestsFixture> { }
+    public class ConsolidatedInvestmentServiceTestsFixture : IDisposable
     {
-        public ConsolidatedInvestmentRepository ConsolidatedInvestmentRepository;
+        public ConsolidatedInvestmentService ConsolidatedInvestmentService;
         public AutoMocker Mocker;
 
-        public ConsolidatedInvestmentRepository CreateConsolidatedInvestmentRepository()
+        public ConsolidatedInvestmentService CreateConsolidatedInvestmentService()
         {
             Mocker = new AutoMocker();
-            ConsolidatedInvestmentRepository = Mocker.CreateInstance<ConsolidatedInvestmentRepository>();
-            return ConsolidatedInvestmentRepository;
+            ConsolidatedInvestmentService = Mocker.CreateInstance<ConsolidatedInvestmentService>();
+            return ConsolidatedInvestmentService;
         }
 
         public IEnumerable<TreasuryDirect> GenerateTresuryDirectListOk()

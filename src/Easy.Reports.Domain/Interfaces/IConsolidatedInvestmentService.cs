@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Easy.Reports.Domain.Interfaces
 {
-    public interface IConsolidatedInvestmentRepository
+    public interface IConsolidatedInvestmentService
     {
         Task<IEnumerable<Investment>> GetAllCalculatedInvestmentsAsync(DateTime rescueDate);
     }

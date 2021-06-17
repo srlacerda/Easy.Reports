@@ -34,7 +34,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponsefixedIncomeMockModel);
 
             // Act
-            var result = await _fixedIncomeRepository.GetFixedIncomeAsync(_rescueDate);
+            var result = await _fixedIncomeRepository.GetFixedIncomeAsync();
             var resultFixedIncomeFirst = result.FirstOrDefault();
 
             // Assert
@@ -58,7 +58,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponsefixedIncomeMockModel);
 
             // Act
-            var result = await _fixedIncomeRepository.GetFixedIncomeAsync(_rescueDate);
+            var result = await _fixedIncomeRepository.GetFixedIncomeAsync();
 
             // Assert
             _fixedIncomeRepositoryTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetFixedIncomeAsync(), Times.Once);

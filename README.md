@@ -22,7 +22,7 @@ If you liked the project, please give a star ;)
 ## Architecture:
 
 - Full architecture with responsibility separation concerns, SOLID and Clean Code
-- CQRS
+- Use Cases
 - Repository
 
 ## Disclaimer:

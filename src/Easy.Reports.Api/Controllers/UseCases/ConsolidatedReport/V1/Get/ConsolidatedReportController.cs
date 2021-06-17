@@ -13,11 +13,11 @@ namespace Easy.Reports.Api.Controllers.UseCases.ConsolidatedReport.V1
     {
         [HttpGet]
         [ProducesResponseType(typeof(GetResult), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> Get()
         {
             var getQuery = new GetQuery(DateTime.Now);
-            var response = await _mediator.Send(getQuery, CancellationToken.None);
+            var response = await _mediator.Send(getQuery);
             
             if (response == null)
                 return NoContent();

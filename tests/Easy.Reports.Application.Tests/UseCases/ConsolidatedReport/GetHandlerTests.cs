@@ -30,16 +30,16 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             var investments = _getHandlerTestsFixture.GenerateInvestmentsOk();
             var investmentsFirst = investments.FirstOrDefault();
 
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>()
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>()
                 .Setup(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate))
                 .ReturnsAsync(investments);
 
             // Act
             var result = await _getHandler.Handle(_getQuery, _cancellationToken);
-            var resultInvestmentsListFirst = result.investiments.ToList().FirstOrDefault();
+            var resultInvestmentsListFirst = result.Investiments.ToList().FirstOrDefault();
 
             // Assert
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
             Assert.Equal(investmentsFirst.InvestedValue, resultInvestmentsListFirst.InvestedValue);
             Assert.Equal(investmentsFirst.TotalValue, resultInvestmentsListFirst.TotalValue);
             Assert.Equal(investmentsFirst.DueDate, resultInvestmentsListFirst.DueDate);
@@ -53,7 +53,7 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             // Arrange
             var investments = _getHandlerTestsFixture.GenerateInvestmentsNotOk();
 
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>()
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>()
                 .Setup(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate))
                 .ReturnsAsync(investments);
 
@@ -61,8 +61,8 @@ namespace Easy.Reports.Application.Tests.UseCases.ConsolidatedReport
             var result = await _getHandler.Handle(_getQuery, _cancellationToken);
 
             // Assert
-            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentRepository>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
-            Assert.Empty(result.investiments);
+            _getHandlerTestsFixture.Mocker.GetMock<IConsolidatedInvestmentService>().Verify(c => c.GetAllCalculatedInvestmentsAsync(_getQuery.RescueDate), Times.Once);
+            Assert.Empty(result.Investiments);
         }
     }
 }

@@ -13,17 +13,17 @@ namespace Easy.Reports.Application.UseCases.ConsolidatedReport
         private readonly string _logNull = "It was not possible to got the investments.";
 
         private readonly ILogger _logger;
-        private readonly IConsolidatedInvestmentRepository _consolidatedInvestmentRepository;
-        public GetHandler(ILogger logger, IConsolidatedInvestmentRepository consolidatedInvestmentRepository)
+        private readonly IConsolidatedInvestmentService _consolidatedInvestmentService;
+        public GetHandler(ILogger logger, IConsolidatedInvestmentService consolidatedInvestmentService)
         {
             _logger = logger;
-            _consolidatedInvestmentRepository = consolidatedInvestmentRepository;
+            _consolidatedInvestmentService = consolidatedInvestmentService;
         }
         public async Task<GetResult> Handle(GetQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var investments = await _consolidatedInvestmentRepository.GetAllCalculatedInvestmentsAsync(request.RescueDate);
+                var investments = await _consolidatedInvestmentService.GetAllCalculatedInvestmentsAsync(request.RescueDate);
                 
                 if (investments == null)
                 {

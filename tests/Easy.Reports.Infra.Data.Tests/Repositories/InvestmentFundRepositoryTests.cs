@@ -34,7 +34,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseinvestmentFundMockModel);
 
             // Act
-            var result = await _investmentFundRepository.GetInvestmentFundAsync(_rescueDate);
+            var result = await _investmentFundRepository.GetInvestmentFundAsync();
             var resultInvestmentFundFirst = result.FirstOrDefault();
 
             // Assert
@@ -58,7 +58,7 @@ namespace Easy.Reports.Data.Tests.Repositories
                 .ReturnsAsync(apiResponseinvestmentFundMockModel);
 
             // Act
-            var result = await _investmentFundRepository.GetInvestmentFundAsync(_rescueDate);
+            var result = await _investmentFundRepository.GetInvestmentFundAsync();
 
             // Assert
             _investmentFundRepositoryTestsFixture.Mocker.GetMock<IMockService>().Verify(m => m.GetInvestmentFundAsync(), Times.Once);
