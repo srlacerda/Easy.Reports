@@ -45,17 +45,14 @@ namespace Easy.Reports.Application.Services
 
             return investments;
         }
-
         private async Task<IEnumerable<Investment>> GetTreasuryDirectAsync()
         {
             return await _treasuryDirectRepository.GetTreasuryDirectAsync();
         }
-
         private async Task<IEnumerable<Investment>> GetFixedIncomeAsync()
         {
             return await _fixedIncomeRepository.GetFixedIncomeAsync();
         }
-
         private async Task<IEnumerable<Investment>> GetInvestmentFundAsync()
         {
             return await _investmentFundRepository.GetInvestmentFundAsync();
