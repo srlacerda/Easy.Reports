@@ -32,7 +32,7 @@ namespace Easy.Reports.Application.Services
                     GetInvestmentFundAsync()
                 );
 
-                investments = (resultInvestments.Aggregate((r1, r2) => r1?.Concat(r2))).ToList();
+                investments = resultInvestments.Aggregate((r1, r2) => r1?.Concat(r2)).ToList();
 
                 if (!investments.Any())
                     return null;

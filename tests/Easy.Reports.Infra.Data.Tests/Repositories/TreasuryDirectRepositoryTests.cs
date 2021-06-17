@@ -1,7 +1,6 @@
-﻿using Easy.Reports.Infra.Data.Repositories;
-using Easy.Reports.Domain.Interfaces;
+﻿using Easy.Reports.Domain.Interfaces;
+using Easy.Reports.Infra.Data.Repositories;
 using Moq;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -13,12 +12,10 @@ namespace Easy.Reports.Data.Tests.Repositories
     {
         private readonly TreasuryDirectRepositoryTestsFixture _treasuryDirectRepositoryTestsFixture;
         private readonly TreasuryDirectRepository _treasuryDirectRepository;
-        private readonly DateTime _rescueDate;
         public TreasuryDirectRepositoryTests(TreasuryDirectRepositoryTestsFixture treasuryDirectRepositoryTestsFixture)
         {
             _treasuryDirectRepositoryTestsFixture = treasuryDirectRepositoryTestsFixture;
             _treasuryDirectRepository = _treasuryDirectRepositoryTestsFixture.CreateTreasuryDirectRepository();
-            _rescueDate = new DateTime(2021, 06, 14);
         }
 
         [Fact(DisplayName = "Get Treasury Direct Ok")]

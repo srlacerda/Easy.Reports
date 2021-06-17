@@ -1,7 +1,6 @@
-﻿using Easy.Reports.Infra.Data.Repositories;
-using Easy.Reports.Domain.Interfaces;
+﻿using Easy.Reports.Domain.Interfaces;
+using Easy.Reports.Infra.Data.Repositories;
 using Moq;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -13,12 +12,10 @@ namespace Easy.Reports.Data.Tests.Repositories
     {
         private readonly InvestmentFundRepositoryTestsFixture _investmentFundRepositoryTestsFixture;
         private readonly InvestmentFundRepository _investmentFundRepository;
-        private readonly DateTime _rescueDate;
         public InvestmentFundRepositoryTests(InvestmentFundRepositoryTestsFixture investmentFundRepositoryTestsFixture)
         {
             _investmentFundRepositoryTestsFixture = investmentFundRepositoryTestsFixture;
             _investmentFundRepository = _investmentFundRepositoryTestsFixture.CreateInvestmentFundRepository();
-            _rescueDate = new DateTime(2021, 06, 14);
         }
 
         [Fact(DisplayName = "Get Investment Fund Ok")]
