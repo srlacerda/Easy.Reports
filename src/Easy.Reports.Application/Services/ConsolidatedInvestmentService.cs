@@ -37,7 +37,6 @@ namespace Easy.Reports.Application.Services
                 if (!investments.Any())
                     return null;
 
-
                 foreach (var investment in investments)
                     investment.PerformCalculationsRescue(rescueDate);
 
